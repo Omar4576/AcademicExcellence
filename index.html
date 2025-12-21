@@ -3,168 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Excellence Dubai | Premium Support</title>
+    <title>Academic Excellence Dubai | Premium Academic Support</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #e5e5e5; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #e5e5e5; }
         .gold-text { color: #D4AF37; }
         .gold-bg { background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); }
         .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); backdrop-filter: blur(10px); }
         .hero-gradient { background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%); }
-        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
     </style>
 </head>
 <body>
 
     <header class="hero-gradient min-h-screen flex flex-col items-center justify-center text-center px-4">
-        <img src="logo.jpg" alt="Logo" class="w-48 h-48 md:w-64 md:h-64 mb-8 rounded-full border-4 border-[#D4AF37] shadow-[0_0_50px_rgba(212,175,55,0.3)]">
-        <h1 class="text-5xl md:text-8xl font-bold gold-text mb-4" style="font-family: 'Playfair Display';">ACADEMIC<br>EXCELLENCE</h1>
-        <p class="text-xl text-gray-400 max-w-2xl mt-4">Professional Document Drafting, Presentation Design, and Formatting for Dubai's Elite Students.</p>
-        <div class="mt-10 flex gap-4">
-            <a href="#order" class="gold-bg text-black px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">Book a Service</a>
-            <a href="mailto:academicexcellence595@gmail.com" class="border border-[#D4AF37] text-[#D4AF37] px-10 py-4 rounded-full font-bold text-lg hover:bg-[#D4AF37] hover:text-black transition-all">Contact Us</a>
-        </div>
+        <img src="logo.jpg" alt="Academic Excellence Logo" class="w-64 h-64 mb-8 rounded-full border-4 border-[#D4AF37] shadow-2xl">
+        <h1 class="text-5xl md:text-7xl font-bold gold-text mb-4" style="font-family: 'Playfair Display';">ACADEMIC EXCELLENCE</h1>
+        <p class="text-xl text-gray-400 max-w-2xl">Dubai's Premier Academic Formatting & Presentation Service. Elevating your submissions to professional standards.</p>
+        <a href="#order" class="mt-10 gold-bg text-black px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">Get Started</a>
     </header>
 
-    <section class="py-24 px-6 max-w-7xl mx-auto">
-        <h2 class="text-4xl font-bold text-center mb-16 gold-text italic">Premium Tiers</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="glass-card p-8 rounded-3xl border-t-4 border-t-[#D4AF37]">
-                <h3 class="text-xl font-bold mb-4">Presentation</h3>
-                <div class="space-y-2 mb-6">
-                    <p class="flex justify-between"><span>Standard:</span> <span class="gold-text">300 AED</span></p>
-                    <p class="flex justify-between"><span>VIP:</span> <span class="gold-text">385 AED</span></p>
-                </div>
-                <p class="text-xs text-gray-500 italic">Full visual design & speaker notes.</p>
+    <section class="py-20 px-6 max-w-7xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-16 gold-text">Our Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="glass-card p-8 rounded-2xl hover:border-[#D4AF37] transition-all">
+                <h3 class="text-2xl font-bold mb-2">Presentation</h3>
+                <p class="text-gray-400 mb-4">Visual Storytelling</p>
+                <div class="text-3xl font-bold gold-text mb-2">300 AED</div>
+                <ul class="text-sm text-gray-500 mb-6"><li>Standard (3-5 Days)</li><li>VIP: 385 AED (1-3 Days)</li></ul>
             </div>
-            <div class="glass-card p-8 rounded-3xl">
-                <h3 class="text-xl font-bold mb-4">Essay Support</h3>
-                <div class="space-y-2 mb-6">
-                    <p class="flex justify-between"><span>Standard:</span> <span class="gold-text">200 AED</span></p>
-                    <p class="flex justify-between"><span>VIP:</span> <span class="gold-text">250 AED</span></p>
-                </div>
-                <p class="text-xs text-gray-500 italic">Structural drafting & proofreading.</p>
+            <div class="glass-card p-8 rounded-2xl hover:border-[#D4AF37] transition-all">
+                <h3 class="text-2xl font-bold mb-2">Essay</h3>
+                <p class="text-gray-400 mb-4">Structure & Flow</p>
+                <div class="text-3xl font-bold gold-text mb-2">200 AED</div>
+                <ul class="text-sm text-gray-500 mb-6"><li>Standard (2-4 Days)</li><li>VIP: 250 AED (1-2 Days)</li></ul>
             </div>
-            <div class="glass-card p-8 rounded-3xl">
-                <h3 class="text-xl font-bold mb-4">Report (1k+ Words)</h3>
-                <div class="space-y-2 mb-6">
-                    <p class="flex justify-between"><span>Standard:</span> <span class="gold-text">350 AED</span></p>
-                    <p class="flex justify-between"><span>VIP:</span> <span class="gold-text">400 AED</span></p>
-                </div>
-                <p class="text-xs text-gray-500 italic">Technical data layout & research aid.</p>
+            <div class="glass-card p-8 rounded-2xl hover:border-[#D4AF37] transition-all">
+                <h3 class="text-2xl font-bold mb-2">Report</h3>
+                <p class="text-gray-400 mb-4">1000+ Words Analysis</p>
+                <div class="text-3xl font-bold gold-text mb-2">350 AED</div>
+                <ul class="text-sm text-gray-500 mb-6"><li>Standard (3-5 Days)</li><li>VIP: 400 AED (1-3 Days)</li></ul>
             </div>
-            <div class="glass-card p-8 rounded-3xl">
-                <h3 class="text-xl font-bold mb-4">Academic Poster</h3>
-                <div class="space-y-2 mb-6">
-                    <p class="flex justify-between"><span>Standard:</span> <span class="gold-text">150 AED</span></p>
-                    <p class="flex justify-between"><span>VIP:</span> <span class="gold-text">175 AED</span></p>
-                </div>
-                <p class="text-xs text-gray-500 italic">High-res infographic formatting.</p>
+            <div class="glass-card p-8 rounded-2xl hover:border-[#D4AF37] transition-all">
+                <h3 class="text-2xl font-bold mb-2">Poster</h3>
+                <p class="text-gray-400 mb-4">Academic Graphics</p>
+                <div class="text-3xl font-bold gold-text mb-2">150 AED</div>
+                <ul class="text-sm text-gray-500 mb-6"><li>Standard (1-2 Days)</li><li>VIP: 175 AED (0-1 Days)</li></ul>
             </div>
         </div>
+        <p class="text-center mt-12 text-orange-400 font-semibold italic">* Urgent Work (under 2 days) incurs an additional 50 AED fee.</p>
     </section>
 
-    <section id="order" class="py-20 bg-[#080808]">
+    <section id="order" class="py-20 bg-[#0a0a0a]">
         <div class="max-w-4xl mx-auto px-6">
-            <div class="glass-card p-8 md:p-12 rounded-[2rem] shadow-2xl">
-                <h2 class="text-3xl font-bold mb-2 gold-text">Secure Your Submission</h2>
-                <p class="text-gray-400 mb-10">Fill in the details. We will contact you within 2 hours to confirm and process payment.</p>
+            <div class="glass-card p-10 rounded-3xl">
+                <h2 class="text-3xl font-bold mb-8 gold-text text-center">Place Your Order</h2>
                 
-                <form action="https://formspree.io/f/mykgpbjp" method="POST" class="space-y-8">
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <form action="https://formspree.io/f/mykgpbjp" method="POST" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block mb-2 text-sm font-semibold uppercase tracking-wider text-gray-500">Full Name</label>
-                            <input type="text" name="name" required placeholder="John Doe" class="w-full bg-transparent border-b-2 border-gray-800 p-3 focus:border-[#D4AF37] outline-none transition-all">
+                            <label class="block mb-2 text-sm">Full Name</label>
+                            <input type="text" name="name" required class="w-full bg-black border border-gray-700 p-3 rounded-lg focus:border-[#D4AF37] outline-none">
                         </div>
                         <div>
-                            <label class="block mb-2 text-sm font-semibold uppercase tracking-wider text-gray-500">Email Address</label>
-                            <input type="email" name="email" required placeholder="example@email.com" class="w-full bg-transparent border-b-2 border-gray-800 p-3 focus:border-[#D4AF37] outline-none transition-all">
+                            <label class="block mb-2 text-sm">Email Address</label>
+                            <input type="email" name="email" required class="w-full bg-black border border-gray-700 p-3 rounded-lg focus:border-[#D4AF37] outline-none">
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block mb-2 text-sm font-semibold uppercase tracking-wider text-gray-500">Service & Priority</label>
-                            <select id="serviceSelect" name="service" class="w-full bg-[#111] border border-gray-800 p-4 rounded-xl outline-none text-white focus:border-[#D4AF37]">
-                                <option value="300">Presentation (Standard) - 300 AED</option>
-                                <option value="385">Presentation (VIP) - 385 AED</option>
-                                <option value="200">Essay (Standard) - 200 AED</option>
-                                <option value="250">Essay (VIP) - 250 AED</option>
-                                <option value="350">Report (Standard) - 350 AED</option>
-                                <option value="400">Report (VIP) - 400 AED</option>
-                                <option value="150">Poster (Standard) - 150 AED</option>
-                                <option value="175">Poster (VIP) - 175 AED</option>
+                            <label class="block mb-2 text-sm">Service Type</label>
+                            <select name="service" class="w-full bg-black border border-gray-700 p-3 rounded-lg outline-none text-white">
+                                <option>Presentation (Standard)</option>
+                                <option>Presentation (VIP)</option>
+                                <option>Essay (Standard)</option>
+                                <option>Essay (VIP)</option>
+                                <option>Report (Standard)</option>
+                                <option>Report (VIP)</option>
+                                <option>Poster (Standard)</option>
+                                <option>Poster (VIP)</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block mb-2 text-sm font-semibold uppercase tracking-wider text-orange-400">When is it due?</label>
-                            <input type="date" id="datePicker" name="deadline" required class="w-full bg-[#111] border border-gray-800 p-4 rounded-xl outline-none focus:border-white">
+                            <label class="block mb-2 text-sm font-bold text-orange-400">When is it due? (Submission Date)</label>
+                            <input type="date" name="deadline" required class="w-full bg-black border border-orange-700 p-3 rounded-lg focus:border-white outline-none">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block mb-2 text-sm font-semibold uppercase tracking-wider text-gray-500">Instructions / Topic</label>
-                        <textarea name="message" rows="4" placeholder="Briefly describe what you need..." class="w-full bg-[#111] border border-gray-800 p-4 rounded-xl outline-none focus:border-[#D4AF37]"></textarea>
+                        <label class="block mb-2 text-sm">Project Description & Requirements</label>
+                        <textarea name="message" rows="4" placeholder="Mention topic, word count, or specific Dubai university guidelines..." class="w-full bg-black border border-gray-700 p-3 rounded-lg focus:border-[#D4AF37] outline-none"></textarea>
                     </div>
 
-                    <div class="bg-black/50 p-6 rounded-2xl border border-dashed border-gray-700">
-                        <div class="flex justify-between items-center">
-                            <span class="text-lg">Estimated Total:</span>
-                            <span id="totalDisplay" class="text-3xl font-bold gold-text underline">300 AED</span>
+                    <div class="p-4 bg-yellow-900/20 border border-yellow-700 rounded-lg">
+                        <p class="font-bold mb-2">Select Payment Method:</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center space-x-3">
+                                <input type="radio" name="payment_method" value="Stripe" checked>
+                                <span>Pay Now via Stripe (Instant)</span>
+                            </label>
+                            <label class="flex items-center space-x-3">
+                                <input type="radio" name="payment_method" value="Manual">
+                                <span>Request Manual Quote (Bank Transfer/Email)</span>
+                            </label>
                         </div>
-                        <p id="rushWarning" class="text-orange-500 text-xs mt-2 hidden font-bold">⚠️ +50 AED Rushed Fee applied for delivery under 48 hours.</p>
                     </div>
 
-                    <button type="submit" class="w-full gold-bg text-black font-extrabold py-5 rounded-2xl hover:brightness-110 shadow-lg shadow-[#D4AF37]/20 transition-all uppercase tracking-widest">
-                        Submit Order Inquiry
-                    </button>
-
-                    <p class="text-center text-xs text-gray-600">
-                        After submission, check your email. We will provide a direct payment link or bank details. <br>
-                        Contact: <strong>academicexcellence595@gmail.com</strong>
-                    </p>
+                    <button type="submit" class="w-full gold-bg text-black font-bold py-4 rounded-xl hover:opacity-90">Confirm Submission</button>
+                    <p class="text-center text-xs text-gray-500 mt-4">By submitting, you agree to our Terms of Service. Contact: academicexcellence595@gmail.com</p>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center text-gray-700 bg-black">
-        <p class="mb-4">Academic Excellence Dubai | Leading with Integrity & Quality</p>
-        <p class="text-[10px] uppercase tracking-widest">A Professional Document Consultancy Service</p>
+    <footer class="py-10 text-center text-gray-600 border-t border-gray-900">
+        <p>&copy; 2024 Academic Excellence Dubai. All Rights Reserved.</p>
     </footer>
-
-    <script>
-        const serviceSelect = document.getElementById('serviceSelect');
-        const datePicker = document.getElementById('datePicker');
-        const totalDisplay = document.getElementById('totalDisplay');
-        const rushWarning = document.getElementById('rushWarning');
-
-        function calculate() {
-            let basePrice = parseInt(serviceSelect.value);
-            let rushFee = 0;
-
-            if (datePicker.value) {
-                const today = new Date();
-                const deadline = new Date(datePicker.value);
-                const diffTime = deadline - today;
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-                if (diffDays <= 2 && diffDays >= 0) {
-                    rushFee = 50;
-                    rushWarning.classList.remove('hidden');
-                } else {
-                    rushWarning.classList.add('hidden');
-                }
-            }
-            
-            totalDisplay.innerText = (basePrice + rushFee) + " AED";
-        }
-
-        serviceSelect.addEventListener('change', calculate);
-        datePicker.addEventListener('change', calculate);
-    </script>
 
 </body>
 </html>
