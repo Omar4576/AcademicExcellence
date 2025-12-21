@@ -1,1 +1,52 @@
-https://github.com/omar4570/academic-dubai/new/main?filename=script.js&value=document.getElementById('orderForm').addEventListener('submit'%2C%20function(e)%20%7B%0A%20%20%20%20e.preventDefault()%3B%0A%20%20%20%20%0A%20%20%20%20const%20service%20%3D%20document.getElementById('service').value%3B%0A%20%20%20%20const%20deadline%20%3D%20document.getElementById('deadline').value%3B%0A%20%20%20%20const%20details%20%3D%20document.getElementById('details').value%3B%0A%20%20%20%20const%20email%20%3D%20document.getElementById('email').value%3B%0A%20%20%20%20%0A%20%20%20%20if%20(!service%20%7C%7C%20!deadline%20%7C%7C%20!details%20%7C%7C%20!email)%20%7B%0A%20%20%20%20%20%20%20%20alert('Please%20fill%20in%20all%20required%20fields.')%3B%0A%20%20%20%20%20%20%20%20return%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20const%20today%20%3D%20new%20Date()%3B%0A%20%20%20%20const%20selectedDate%20%3D%20new%20Date(deadline)%3B%0A%20%20%20%20today.setHours(0%2C%200%2C%200%2C%200)%3B%0A%20%20%20%20%0A%20%20%20%20if%20(selectedDate%20%3C%3D%20today)%20%7B%0A%20%20%20%20%20%20%20%20if%20(!confirm('Your%20deadline%20is%20today%20or%20in%20the%20past.%20This%20will%20incur%20a%20%2B50%20AED%20rush%20fee.%20Continue%3F'))%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20return%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20const%20timeDiff%20%3D%20selectedDate%20-%20today%3B%0A%20%20%20%20const%20daysDiff%20%3D%20Math.ceil(timeDiff%20%2F%20(1000%20*%2060%20*%2060%20*%2024))%3B%0A%20%20%20%20%0A%20%20%20%20let%20basePrice%20%3D%200%3B%0A%20%20%20%20let%20serviceName%20%3D%20''%3B%0A%20%20%20%20%0A%20%20%20%20const%20prices%20%3D%20%7B%0A%20%20%20%20%20%20%20%20'presentation'%3A%20300%2C%0A%20%20%20%20%20%20%20%20'essay'%3A%20200%2C%0A%20%20%20%20%20%20%20%20'report'%3A%20400%2C%0A%20%20%20%20%20%20%20%20'poster'%3A%20150%2C%0A%20%20%20%20%20%20%20%20'vip_presentation'%3A%20385%2C%0A%20%20%20%20%20%20%20%20'vip_essay'%3A%20250%0A%20%20%20%20%7D%3B%0A%20%20%20%20%0A%20%20%20%20basePrice%20%3D%20prices%5Bservice%5D%20%7C%7C%200%3B%0A%20%20%20%20%0A%20%20%20%20let%20rushFee%20%3D%200%3B%0A%20%20%20%20let%20finalPrice%20%3D%20basePrice%3B%0A%20%20%20%20%0A%20%20%20%20if%20(daysDiff%20%3C%202)%20%7B%0A%20%20%20%20%20%20%20%20rushFee%20%3D%2050%3B%0A%20%20%20%20%20%20%20%20finalPrice%20%3D%20basePrice%20%2B%20rushFee%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20const%20serviceNames%20%3D%20%7B%0A%20%20%20%20%20%20%20%20'presentation'%3A%20'Presentation'%2C%0A%20%20%20%20%20%20%20%20'essay'%3A%20'Essay'%2C%0A%20%20%20%20%20%20%20%20'report'%3A%20'Report%20(1000%2B%20words)'%2C%0A%20%20%20%20%20%20%20%20'poster'%3A%20'Academic%20Poster'%2C%0A%20%20%20%20%20%20%20%20'vip_presentation'%3A%20'VIP%20Presentation'%2C%0A%20%20%20%20%20%20%20%20'vip_essay'%3A%20'VIP%20Essay'%0A%20%20%20%20%7D%3B%0A%20%20%20%20%0A%20%20%20%20serviceName%20%3D%20serviceNames%5Bservice%5D%20%7C%7C%20'Service'%3B%0A%20%20%20%20%0A%20%20%20%20const%20confirmationMessage%20%3D%20%60%0A%20%20%20%20ORDER%20CONFIRMATION%3A%0A%20%20%20%20%0A%20%20%20%20Service%3A%20%24%7BserviceName%7D%0A%20%20%20%20Deadline%3A%20%24%7Bdeadline%7D%0A%20%20%20%20Project%20Details%3A%20%24%7Bdetails.substring(0%2C%20100)%7D%24%7Bdetails.length%20%3E%20100%20%3F%20'...'%20%3A%20''%7D%0A%20%20%20%20Email%3A%20%24%7Bemail%7D%0A%20%20%20%20%0A%20%20%20%20Base%20Price%3A%20%24%7BbasePrice%7D%20AED%0A%20%20%20%20%24%7BrushFee%20%3E%200%20%3F%20%60Rush%20Fee%20(under%202%20days)%3A%20%2B%24%7BrushFee%7D%20AED%60%20%3A%20''%7D%0A%20%20%20%20Total%3A%20%24%7BfinalPrice%7D%20AED%0A%20%20%20%20%0A%20%20%20%20Next%20Steps%3A%0A%20%20%20%201.%20We'll%20contact%20you%20within%202%20hours%20at%20%24%7Bemail%7D%0A%20%20%20%202.%20Discuss%20detailed%20requirements%0A%20%20%20%203.%20Confirm%20payment%20method%0A%20%20%20%204.%20Begin%20work%20immediately%0A%20%20%20%20%0A%20%20%20%20Thank%20you%20for%20choosing%20Academic%20Excellence%20Dubai%21%0A%20%20%20%20%60%3B%0A%20%20%20%20%0A%20%20%20%20alert(confirmationMessage)%3B%0A%20%20%20%20%0A%20%20%20%20console.log('Order%20Details%3A'%2C%20%7B%0A%20%20%20%20%20%20%20%20service%3A%20serviceName%2C%0A%20%20%20%20%20%20%20%20deadline%2C%0A%20%20%20%20%20%20%20%20details%2C%0A%20%20%20%20%20%20%20%20email%2C%0A%20%20%20%20%20%20%20%20basePrice%2C%0A%20%20%20%20%20%20%20%20rushFee%2
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+  color: #333;
+}
+
+header {
+  background: #111;
+  color: white;
+  padding: 40px;
+  text-align: center;
+}
+
+.btn {
+  background: #00c897;
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+section {
+  padding: 40px;
+  background: white;
+  margin: 20px;
+  border-radius: 8px;
+}
+
+form input, form select, form textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+button {
+  background: #111;
+  color: white;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.note {
+  font-size: 14px;
+  color: #666;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+}
