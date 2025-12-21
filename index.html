@@ -36,22 +36,22 @@
     <h2>Our Services</h2>
     <div class="service-grid">
       <div class="service-card">
-        <i class="fas fa-presentation"></i>
+        <img src="https://images.unsplash.com/photo-1581093588401-d0be7cbb1d11?auto=format&fit=crop&w=200&q=80" alt="Presentation">
         <h3>Presentations</h3>
         <p>Professional slides for any topic, crafted to impress.</p>
       </div>
       <div class="service-card">
-        <i class="fas fa-file-alt"></i>
+        <img src="https://images.unsplash.com/photo-1584697964191-d8b5b9273c96?auto=format&fit=crop&w=200&q=80" alt="Essay">
         <h3>Essays & Reports</h3>
         <p>Well-researched, structured academic writing.</p>
       </div>
       <div class="service-card">
-        <i class="fas fa-chart-line"></i>
+        <img src="https://images.unsplash.com/photo-1596496054300-4d52e3cdcb3f?auto=format&fit=crop&w=200&q=80" alt="Poster">
         <h3>Posters & Visuals</h3>
         <p>Creative academic posters that communicate effectively.</p>
       </div>
       <div class="service-card">
-        <i class="fas fa-crown"></i>
+        <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=200&q=80" alt="VIP Express">
         <h3>VIP Express</h3>
         <p>Priority service with accelerated deadlines.</p>
       </div>
@@ -63,30 +63,23 @@
     <h2>Pricing</h2>
     <div class="pricing-tables">
       <div class="price-card standard">
-        <div class="price-header">
-          <h3>Standard</h3>
-          <p>Quality with reasonable timeline</p>
-        </div>
+        <h3>Standard</h3>
         <ul class="price-features">
           <li><i class="fas fa-check"></i> Presentation: 300 AED (3-5 days)</li>
           <li><i class="fas fa-check"></i> Essay: 200 AED (2-4 days)</li>
-          <li><i class="fas fa-check"></i> Report (1000+ words): 350 AED (3-5 days)</li>
+          <li><i class="fas fa-check"></i> Report: 350 AED (3-5 days)</li>
           <li><i class="fas fa-check"></i> Poster: 150 AED (1-2 days)</li>
         </ul>
       </div>
-
       <div class="price-card vip">
-        <div class="price-header">
-          <div class="vip-badge">VIP</div>
-          <h3>VIP Package</h3>
-          <p>Accelerated priority service</p>
-        </div>
+        <div class="vip-badge">VIP</div>
+        <h3>VIP Package</h3>
         <ul class="price-features">
           <li><i class="fas fa-check"></i> Presentation: 385 AED (1-3 days)</li>
           <li><i class="fas fa-check"></i> Essay: 250 AED (1-2 days)</li>
           <li><i class="fas fa-check"></i> Report: 400 AED (1-3 days)</li>
           <li><i class="fas fa-check"></i> Poster: 175 AED (0-1 days)</li>
-          <li><i class="fas fa-bolt"></i> +50 AED for urgent requests (under 2 days)</li>
+          <li><i class="fas fa-bolt"></i> +50 AED for urgent requests</li>
         </ul>
       </div>
     </div>
@@ -95,10 +88,10 @@
   <!-- Order Form Section -->
   <section id="order" class="order-form">
     <h2>Start Your Project</h2>
-    <form action="https://formspree.io/f/mykgpbjp" method="POST" class="formspree-form">
+    <form id="payment-form">
       <div class="form-group">
         <label for="service">Select Service</label>
-        <select id="service" name="service" required>
+        <select id="service" required>
           <option value="">Choose a service...</option>
           <option value="presentation">Presentation</option>
           <option value="essay">Essay</option>
@@ -112,22 +105,11 @@
       </div>
 
       <div class="form-group">
-        <label for="deadline">Submission Date</label>
-        <input type="date" id="deadline" name="deadline" required>
-        <small>When is it due?</small>
-      </div>
-
-      <div class="form-group">
-        <label for="details">Project Details</label>
-        <textarea id="details" name="message" rows="4" placeholder="Describe your requirements, subject, word count, and instructions..." required></textarea>
-      </div>
-
-      <div class="form-group">
         <label for="email">Your Email</label>
-        <input type="email" id="email" name="email" placeholder="student@university.ac.ae" required>
+        <input type="email" id="email" placeholder="student@university.ac.ae" required>
       </div>
 
-      <button type="submit" class="submit-btn">Send Request</button>
+      <button type="button" id="checkout-button" class="submit-btn">Pay Now</button>
     </form>
   </section>
 
@@ -140,6 +122,33 @@
       <p class="disclaimer">We provide academic assistance, editing, and formatting services. We uphold academic integrity and encourage original student work.</p>
     </div>
   </footer>
+
+  <!-- Stripe JS -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    const stripe = Stripe("YOUR_PUBLISHABLE_KEY"); // replace with your key
+    const button = document.getElementById("checkout-button");
+
+    button.addEventListener("click", async () => {
+      const service = document.getElementById("service").value;
+      const email = document.getElementById("email").value;
+
+      if(!service || !email){
+        alert("Select a service and enter email!");
+        return;
+      }
+
+      const response = await fetch("http://localhost:4242/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ service, email })
+      });
+
+      const session = await response.json();
+      const result = await stripe.redirectToCheckout({ sessionId: session.id });
+      if(result.error) alert(result.error.message);
+    });
+  </script>
 
 </body>
 </html>
