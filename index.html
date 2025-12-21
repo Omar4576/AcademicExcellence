@@ -1,164 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Academic Excellence Dubai | Premium Student Assistance</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Excellence Dubai | Premium Support</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #e5e5e5; scroll-behavior: smooth; }
+        .gold-text { color: #D4AF37; }
+        .gold-bg { background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); }
+        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); backdrop-filter: blur(10px); }
+        .hero-gradient { background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%); }
+        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
+    </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="luxury-nav">
-    <div class="nav-container">
-      <!-- Logo -->
-      <div class="logo">
-        <img src="logo.png" alt="Academic Excellence Dubai" class="logo-img">
-      </div>
+    <header class="hero-gradient min-h-screen flex flex-col items-center justify-center text-center px-4">
+        <img src="logo.jpg" alt="Logo" class="w-48 h-48 md:w-64 md:h-64 mb-8 rounded-full border-4 border-[#D4AF37] shadow-[0_0_50px_rgba(212,175,55,0.3)]">
+        <h1 class="text-5xl md:text-8xl font-bold gold-text mb-4" style="font-family: 'Playfair Display';">ACADEMIC<br>EXCELLENCE</h1>
+        <p class="text-xl text-gray-400 max-w-2xl mt-4">Professional Document Drafting, Presentation Design, and Formatting for Dubai's Elite Students.</p>
+        <div class="mt-10 flex gap-4">
+            <a href="#order" class="gold-bg text-black px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">Book a Service</a>
+            <a href="mailto:academicexcellence595@gmail.com" class="border border-[#D4AF37] text-[#D4AF37] px-10 py-4 rounded-full font-bold text-lg hover:bg-[#D4AF37] hover:text-black transition-all">Contact Us</a>
+        </div>
+    </header>
 
-      <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#order">Order Now</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </nav>
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-16 gold-text italic">Premium Tiers</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-card p-8 rounded-3xl border-t-4 border-t-[#D4AF37]">
+                <h3 class="text-xl font-bold mb-4">Presentation</h3>
+                <div class="space-y-2 mb-6">
+                    <p class="flex justify-between"><span>Standard:</span> <span class="gold-text">300 AED</span></p>
+                    <p class="flex justify-between"><span>VIP:</span> <span class="gold-text">385 AED</span></p>
+                </div>
+                <p class="text-xs text-gray-500 italic">Full visual design & speaker notes.</p>
+            </div>
+            <div class="glass-card p-8 rounded-3xl">
+                <h3 class="text-xl font-bold mb-4">Essay Support</h3>
+                <div class="space-y-2 mb-6">
+                    <p class="flex justify-between"><span>Standard:</span> <span class="gold-text">200 AED</span></p>
+                    <p class="flex justify-between"><span>VIP:</span> <span class="gold-text">250 AED</span></p>
+                </div>
+                <p class="text-xs text-gray-500 italic">Structural drafting & proofreading.</p>
+            </div>
+            <div class="glass-card p-8 rounded-3xl">
+                <h3 class="text-xl font-bold mb-4">Report (1k+ Words)</h3>
+                <div class="space-y-2 mb-6">
+                    <p class="flex justify-between"><span>Standard:</span> <span class="gold-text">350 AED</span></p>
+                    <p class="flex justify-between"><span>VIP:</span> <span class="gold-text">400 AED</span></p>
+                </div>
+                <p class="text-xs text-gray-500 italic">Technical data layout & research aid.</p>
+            </div>
+            <div class="glass-card p-8 rounded-3xl">
+                <h3 class="text-xl font-bold mb-4">Academic Poster</h3>
+                <div class="space-y-2 mb-6">
+                    <p class="flex justify-between"><span>Standard:</span> <span class="gold-text">150 AED</span></p>
+                    <p class="flex justify-between"><span>VIP:</span> <span class="gold-text">175 AED</span></p>
+                </div>
+                <p class="text-xs text-gray-500 italic">High-res infographic formatting.</p>
+            </div>
+        </div>
+    </section>
 
-  <!-- Hero Section -->
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Your Success, <span class="highlight">Our Priority</span></h1>
-      <p class="hero-subtitle">Premium academic assistance for Dubai university students. Presentations, essays, reports, posters — we handle the work so you can focus on excellence.</p>
-      <a href="#order" class="cta-button">Start Your Project <i class="fas fa-arrow-right"></i></a>
-    </div>
-  </header>
+    <section id="order" class="py-20 bg-[#080808]">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="glass-card p-8 md:p-12 rounded-[2rem] shadow-2xl">
+                <h2 class="text-3xl font-bold mb-2 gold-text">Secure Your Submission</h2>
+                <p class="text-gray-400 mb-10">Fill in the details. We will contact you within 2 hours to confirm and process payment.</p>
+                
+                <form action="https://formspree.io/f/mykgpbjp" method="POST" class="space-y-8">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block mb-2 text-sm font-semibold uppercase tracking-wider text-gray-500">Full Name</label>
+                            <input type="text" name="name" required placeholder="John Doe" class="w-full bg-transparent border-b-2 border-gray-800 p-3 focus:border-[#D4AF37] outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm font-semibold uppercase tracking-wider text-gray-500">Email Address</label>
+                            <input type="email" name="email" required placeholder="example@email.com" class="w-full bg-transparent border-b-2 border-gray-800 p-3 focus:border-[#D4AF37] outline-none transition-all">
+                        </div>
+                    </div>
 
-  <!-- Services Section -->
-  <section id="services" class="services">
-    <h2>Our Services</h2>
-    <div class="service-grid">
-      <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1581093588401-d0be7cbb1d11?auto=format&fit=crop&w=200&q=80" alt="Presentation">
-        <h3>Presentations</h3>
-        <p>Professional slides for any topic, crafted to impress.</p>
-      </div>
-      <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1584697964191-d8b5b9273c96?auto=format&fit=crop&w=200&q=80" alt="Essay">
-        <h3>Essays & Reports</h3>
-        <p>Well-researched, structured academic writing.</p>
-      </div>
-      <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1596496054300-4d52e3cdcb3f?auto=format&fit=crop&w=200&q=80" alt="Poster">
-        <h3>Posters & Visuals</h3>
-        <p>Creative academic posters that communicate effectively.</p>
-      </div>
-      <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=200&q=80" alt="VIP Express">
-        <h3>VIP Express</h3>
-        <p>Priority service with accelerated deadlines.</p>
-      </div>
-    </div>
-  </section>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block mb-2 text-sm font-semibold uppercase tracking-wider text-gray-500">Service & Priority</label>
+                            <select id="serviceSelect" name="service" class="w-full bg-[#111] border border-gray-800 p-4 rounded-xl outline-none text-white focus:border-[#D4AF37]">
+                                <option value="300">Presentation (Standard) - 300 AED</option>
+                                <option value="385">Presentation (VIP) - 385 AED</option>
+                                <option value="200">Essay (Standard) - 200 AED</option>
+                                <option value="250">Essay (VIP) - 250 AED</option>
+                                <option value="350">Report (Standard) - 350 AED</option>
+                                <option value="400">Report (VIP) - 400 AED</option>
+                                <option value="150">Poster (Standard) - 150 AED</option>
+                                <option value="175">Poster (VIP) - 175 AED</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm font-semibold uppercase tracking-wider text-orange-400">When is it due?</label>
+                            <input type="date" id="datePicker" name="deadline" required class="w-full bg-[#111] border border-gray-800 p-4 rounded-xl outline-none focus:border-white">
+                        </div>
+                    </div>
 
-  <!-- Pricing Section -->
-  <section id="pricing" class="pricing">
-    <h2>Pricing</h2>
-    <div class="pricing-tables">
-      <div class="price-card standard">
-        <h3>Standard</h3>
-        <ul class="price-features">
-          <li><i class="fas fa-check"></i> Presentation: 300 AED (3-5 days)</li>
-          <li><i class="fas fa-check"></i> Essay: 200 AED (2-4 days)</li>
-          <li><i class="fas fa-check"></i> Report: 350 AED (3-5 days)</li>
-          <li><i class="fas fa-check"></i> Poster: 150 AED (1-2 days)</li>
-        </ul>
-      </div>
-      <div class="price-card vip">
-        <div class="vip-badge">VIP</div>
-        <h3>VIP Package</h3>
-        <ul class="price-features">
-          <li><i class="fas fa-check"></i> Presentation: 385 AED (1-3 days)</li>
-          <li><i class="fas fa-check"></i> Essay: 250 AED (1-2 days)</li>
-          <li><i class="fas fa-check"></i> Report: 400 AED (1-3 days)</li>
-          <li><i class="fas fa-check"></i> Poster: 175 AED (0-1 days)</li>
-          <li><i class="fas fa-bolt"></i> +50 AED for urgent requests</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+                    <div>
+                        <label class="block mb-2 text-sm font-semibold uppercase tracking-wider text-gray-500">Instructions / Topic</label>
+                        <textarea name="message" rows="4" placeholder="Briefly describe what you need..." class="w-full bg-[#111] border border-gray-800 p-4 rounded-xl outline-none focus:border-[#D4AF37]"></textarea>
+                    </div>
 
-  <!-- Order Form Section -->
-  <section id="order" class="order-form">
-    <h2>Start Your Project</h2>
-    <form id="payment-form">
-      <div class="form-group">
-        <label for="service">Select Service</label>
-        <select id="service" required>
-          <option value="">Choose a service...</option>
-          <option value="presentation">Presentation</option>
-          <option value="essay">Essay</option>
-          <option value="report">Report</option>
-          <option value="poster">Poster</option>
-          <option value="vip_presentation">VIP Presentation</option>
-          <option value="vip_essay">VIP Essay</option>
-          <option value="vip_report">VIP Report</option>
-          <option value="vip_poster">VIP Poster</option>
-        </select>
-      </div>
+                    <div class="bg-black/50 p-6 rounded-2xl border border-dashed border-gray-700">
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg">Estimated Total:</span>
+                            <span id="totalDisplay" class="text-3xl font-bold gold-text underline">300 AED</span>
+                        </div>
+                        <p id="rushWarning" class="text-orange-500 text-xs mt-2 hidden font-bold">⚠️ +50 AED Rushed Fee applied for delivery under 48 hours.</p>
+                    </div>
 
-      <div class="form-group">
-        <label for="email">Your Email</label>
-        <input type="email" id="email" placeholder="student@university.ac.ae" required>
-      </div>
+                    <button type="submit" class="w-full gold-bg text-black font-extrabold py-5 rounded-2xl hover:brightness-110 shadow-lg shadow-[#D4AF37]/20 transition-all uppercase tracking-widest">
+                        Submit Order Inquiry
+                    </button>
 
-      <button type="button" id="checkout-button" class="submit-btn">Pay Now</button>
-    </form>
-  </section>
+                    <p class="text-center text-xs text-gray-600">
+                        After submission, check your email. We will provide a direct payment link or bank details. <br>
+                        Contact: <strong>academicexcellence595@gmail.com</strong>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
 
-  <!-- Footer -->
-  <footer id="contact">
-    <div class="footer-content">
-      <img src="logo.png" alt="Academic Excellence Dubai" class="footer-logo-img">
-      <p>Serving Dubai Universities: UOWD, AUD, MBZUAI, Heriot-Watt, and more</p>
-      <p>Contact: assistance@academicexcellence.ae</p>
-      <p class="disclaimer">We provide academic assistance, editing, and formatting services. We uphold academic integrity and encourage original student work.</p>
-    </div>
-  </footer>
+    <footer class="py-12 text-center text-gray-700 bg-black">
+        <p class="mb-4">Academic Excellence Dubai | Leading with Integrity & Quality</p>
+        <p class="text-[10px] uppercase tracking-widest">A Professional Document Consultancy Service</p>
+    </footer>
 
-  <!-- Stripe JS -->
-  <script src="https://js.stripe.com/v3/"></script>
-  <script>
-    const stripe = Stripe("YOUR_PUBLISHABLE_KEY"); // replace with your Stripe key
-    const button = document.getElementById("checkout-button");
+    <script>
+        const serviceSelect = document.getElementById('serviceSelect');
+        const datePicker = document.getElementById('datePicker');
+        const totalDisplay = document.getElementById('totalDisplay');
+        const rushWarning = document.getElementById('rushWarning');
 
-    button.addEventListener("click", async () => {
-      const service = document.getElementById("service").value;
-      const email = document.getElementById("email").value;
+        function calculate() {
+            let basePrice = parseInt(serviceSelect.value);
+            let rushFee = 0;
 
-      if(!service || !email){
-        alert("Select a service and enter email!");
-        return;
-      }
+            if (datePicker.value) {
+                const today = new Date();
+                const deadline = new Date(datePicker.value);
+                const diffTime = deadline - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-      const response = await fetch("http://localhost:4242/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ service, email })
-      });
+                if (diffDays <= 2 && diffDays >= 0) {
+                    rushFee = 50;
+                    rushWarning.classList.remove('hidden');
+                } else {
+                    rushWarning.classList.add('hidden');
+                }
+            }
+            
+            totalDisplay.innerText = (basePrice + rushFee) + " AED";
+        }
 
-      const session = await response.json();
-      const result = await stripe.redirectToCheckout({ sessionId: session.id });
-      if(result.error) alert(result.error.message);
-    });
-  </script>
+        serviceSelect.addEventListener('change', calculate);
+        datePicker.addEventListener('change', calculate);
+    </script>
 
 </body>
 </html>
-
-  </script>
-
-</body>
-</html>
-
