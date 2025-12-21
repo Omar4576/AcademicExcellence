@@ -3,195 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Excellence | Dubai Elite Concierge</title>
+    <title>Academic Excellence Dubai | The Elite Standard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
-        :root { --gold: #D4AF37; --dark: #050505; --accent: #1a1a1a; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--dark); color: #e5e5e5; scroll-behavior: smooth; overflow-x: hidden; }
+        :root { --gold: #D4AF37; --dark: #050505; --soft-gold: #b8860b; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--dark); color: #e5e5e5; scroll-behavior: smooth; }
         .gold-text { color: var(--gold); }
         .gold-bg { background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); }
-        .hero-title { font-family: 'Playfair Display', serif; line-height: 1; letter-spacing: -2px; }
-        .glass { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(212, 175, 55, 0.1); backdrop-filter: blur(20px); transition: 0.4s; }
-        .glass:hover { border-color: var(--gold); background: rgba(255, 255, 255, 0.05); transform: translateY(-5px); }
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; padding: 16px 28px; border-radius: 50px; font-weight: 900; z-index: 1000; text-decoration: none; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        .glass-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(212, 175, 55, 0.15); backdrop-filter: blur(15px); transition: all 0.4s ease; }
+        .glass-card:hover { border-color: var(--gold); transform: translateY(-10px); background: rgba(255, 255, 255, 0.05); }
+        .hero-title { font-family: 'Playfair Display', serif; line-height: 1.1; letter-spacing: -2px; }
+        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; padding: 18px 28px; border-radius: 50px; font-weight: 800; display: flex; align-items: center; gap: 12px; box-shadow: 0 15px 30px rgba(0,0,0,0.4); z-index: 1000; transition: all 0.3s; text-decoration: none; }
+        .whatsapp-btn:hover { transform: scale(1.1) translateY(-5px); }
         .floating { animation: float 6s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-25px); } }
-        .bg-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%); z-index: -1; }
+        @keyframes float { 0%, 100% { transform: translatey(0px); } 50% { transform: translatey(-25px); } }
+        .gradient-mesh { background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%); }
     </style>
 </head>
-<body>
+<body class="gradient-mesh">
 
-    <a href="https://wa.me/994704440404" target="_blank" class="whatsapp-float hover:scale-110 transition-transform">
-        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.319 1.592 5.548 0 10.064-4.516 10.066-10.066.001-2.686-1.043-5.212-2.94-7.11s-4.422-2.942-7.11-2.942c-5.549 0-10.066 4.517-10.067 10.067 0 2.057.61 3.848 1.647 5.497l-.996 3.635 3.731-.973z"/></svg>
-        WHATSAPP CONCIERGE
+    <a href="https://wa.me/994704440404" target="_blank" class="whatsapp-btn">
+        <svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.319 1.592 5.548 0 10.064-4.516 10.066-10.066.001-2.686-1.043-5.212-2.94-7.11s-4.422-2.942-7.11-2.942c-5.549 0-10.066 4.517-10.067 10.067 0 2.057.61 3.848 1.647 5.497l-.996 3.635 3.731-.973z"/></svg>
+        <span>WHATSAPP SUPPORT</span>
     </a>
 
-    <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
-        <div class="bg-glow top-0 left-0"></div>
-        <div class="bg-glow bottom-0 right-0"></div>
+    <header class="min-h-screen flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
+        <div class="absolute top-0 w-full h-full opacity-20 pointer-events-none">
+            <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-gold rounded-full blur-[150px]"></div>
+        </div>
 
         <div class="floating mb-12">
-            <img src="image_db2290.jpg" alt="Logo" class="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-gold shadow-[0_0_90px_rgba(212,175,55,0.3)] object-cover">
+            <img src="logo.jpg" alt="Logo" class="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-[#D4AF37] shadow-[0_0_80px_rgba(212,175,55,0.4)]">
         </div>
 
-        <h1 class="hero-title text-7xl md:text-[10rem] font-black gold-text mb-4 uppercase animate__animated animate__fadeInDown">
+        <h1 class="hero-title text-7xl md:text-9xl font-black gold-text mb-6 animate__animated animate__fadeInDown">
             ACADEMIC<br>EXCELLENCE
         </h1>
-        <p class="text-xl md:text-3xl text-gray-500 font-light max-w-4xl tracking-[0.2em] uppercase mb-12">
-            Architecting Success for Dubai’s Next Generation
+        <p class="text-2xl md:text-3xl text-gray-400 max-w-4xl font-light mb-12 animate__animated animate__fadeInUp">
+            Dubai's premium architectural drafting and visual academic support for high-achieving students.
         </p>
-        
-        <div class="flex flex-col md:flex-row gap-8">
-            <a href="#booking" class="gold-bg text-black px-16 py-6 rounded-full font-black text-2xl hover:scale-105 transition-all shadow-2xl">START INQUIRY</a>
-            <a href="#philosophy" class="border border-gold gold-text px-16 py-6 rounded-full font-black text-2xl hover:bg-gold hover:text-black transition-all">OUR PHILOSOPHY</a>
+
+        <div class="flex flex-wrap justify-center gap-6 animate__animated animate__fadeInUp animate__delay-1s">
+            <a href="#order" class="gold-bg text-black px-16 py-6 rounded-full font-black text-2xl hover:scale-110 transition-transform shadow-2xl">BOOK NOW</a>
+            <a href="#services" class="border-2 border-[#D4AF37] text-[#D4AF37] px-16 py-6 rounded-full font-black text-2xl hover:bg-[#D4AF37] hover:text-black transition-all">VIEW SERVICES</a>
+        </div>
+    </header>
+
+    <section id="services" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="hero-title text-5xl md:text-7xl text-center gold-text mb-20 uppercase">Why Choose the Best?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-12 rounded-[2rem]">
+                    <div class="text-gold text-5xl mb-6">💎</div>
+                    <h3 class="text-3xl font-bold mb-4">Unmatched Quality</h3>
+                    <p class="text-gray-500 text-lg">We don't just type; we design. Every submission is formatted to the highest academic visual standards.</p>
+                </div>
+                <div class="glass-card p-12 rounded-[2rem]">
+                    <div class="text-gold text-5xl mb-6">🔒</div>
+                    <h3 class="text-3xl font-bold mb-4">Total Privacy</h3>
+                    <p class="text-gray-500 text-lg">We understand the importance of discretion in Dubai's educational landscape. Your data stays with us.</p>
+                </div>
+                <div class="glass-card p-12 rounded-[2rem]">
+                    <div class="text-gold text-5xl mb-6">⚡</div>
+                    <h3 class="text-3xl font-bold mb-4">Rapid Turnaround</h3>
+                    <p class="text-gray-500 text-lg">From standard timelines to our emergency 24-hour VIP delivery, we never miss a deadline.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="philosophy" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div class="glass p-12 rounded-[3rem]">
-                <h3 class="text-4xl font-black gold-text mb-6 italic">01</h3>
-                <h4 class="text-2xl font-bold mb-4">Discrete</h4>
-                <p class="text-gray-500 leading-relaxed">Absolute confidentiality. We operate behind the scenes to ensure your reputation remains untouched.</p>
-            </div>
-            <div class="glass p-12 rounded-[3rem]">
-                <h3 class="text-4xl font-black gold-text mb-6 italic">02</h3>
-                <h4 class="text-2xl font-bold mb-4">Premium</h4>
-                <p class="text-gray-500 leading-relaxed">Not just a service—a transformation. We turn standard work into visual and academic masterpieces.</p>
-            </div>
-            <div class="glass p-12 rounded-[3rem]">
-                <h3 class="text-4xl font-black gold-text mb-6 italic">03</h3>
-                <h4 class="text-2xl font-bold mb-4">Global</h4>
-                <p class="text-gray-500 leading-relaxed">Tailored for the high-pressure environment of Dubai’s international university standards.</p>
+    <section class="py-32 bg-[#080808] px-6 border-y border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="hero-title text-5xl md:text-7xl text-center gold-text mb-20 uppercase">Premium Rates</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div class="glass-card p-10 rounded-3xl border-l-8 border-l-gray-600">
+                    <h3 class="text-4xl font-bold mb-8">Standard Tiers</h3>
+                    <div class="space-y-6 text-xl">
+                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Presentation (3-5 days)</span><span class="gold-text">300 AED</span></div>
+                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Essay (2-4 days)</span><span class="gold-text">200 AED</span></div>
+                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Report (3-5 days)</span><span class="gold-text">350 AED</span></div>
+                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Poster (1-2 days)</span><span class="gold-text">150 AED</span></div>
+                    </div>
+                </div>
+                <div class="glass-card p-10 rounded-3xl border-l-8 border-l-[#D4AF37] bg-white/[0.04]">
+                    <h3 class="text-4xl font-bold mb-8 gold-text">VIP Priority</h3>
+                    <div class="space-y-6 text-xl">
+                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Presentation (1-3 days)</span><span class="gold-text">385 AED</span></div>
+                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Essay (1-2 days)</span><span class="gold-text">250 AED</span></div>
+                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Report (1-3 days)</span><span class="gold-text">400 AED</span></div>
+                        <div class="flex justify-between border-b border-white/10 pb-4"><span>Poster (0-1 days)</span><span class="gold-text">175 AED</span></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="py-32 bg-[#080808] px-6">
+    <section id="order" class="py-32 px-6">
         <div class="max-w-5xl mx-auto">
-            <h2 class="hero-title text-6xl gold-text text-center mb-20 uppercase">Investment Menu</h2>
-            <div class="space-y-4">
-                <div class="glass p-8 rounded-2xl flex justify-between items-center group">
-                    <div>
-                        <h5 class="text-2xl font-bold uppercase tracking-widest">Digital Presentation Design</h5>
-                        <p class="text-gray-600">Dynamic visuals & architectural layout</p>
+            <div class="glass-card p-8 md:p-20 rounded-[4rem] relative shadow-[0_0_100px_rgba(0,0,0,0.5)]">
+                
+                <div id="formContainer">
+                    <div class="text-center mb-16">
+                        <h2 class="hero-title text-6xl gold-text mb-4">Start Your Project</h2>
+                        <p class="text-gray-400 text-xl font-light">Enter your details for a professional consultation and quote.</p>
                     </div>
-                    <span class="text-3xl font-black gold-text">300 AED</span>
+
+                    <form id="mainForm" action="https://formspree.io/f/mykgpbjp" method="POST" class="space-y-10">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase gold-text ml-2">Your Full Name</label>
+                                <input type="text" name="name" required placeholder="Ex: Mohammed Al-Dossari" class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl focus:border-[#D4AF37] outline-none">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase gold-text ml-2">Email Address</label>
+                                <input type="email" id="userEmail" name="email" required placeholder="Ex: student@email.com" class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl focus:border-[#D4AF37] outline-none">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase gold-text ml-2">Service Type</label>
+                                <select id="serviceSelect" name="service" class="w-full bg-[#111] border border-white/10 p-5 rounded-2xl outline-none focus:border-[#D4AF37]">
+                                    <optgroup label="Standard (High Quality)">
+                                        <option value="300">Presentation - 300 AED</option>
+                                        <option value="200">Essay - 200 AED</option>
+                                        <option value="350">Report (1000+) - 350 AED</option>
+                                        <option value="150">Poster - 150 AED</option>
+                                    </optgroup>
+                                    <optgroup label="VIP Executive (Priority)">
+                                        <option value="385">Presentation VIP - 385 AED</option>
+                                        <option value="250">Essay VIP - 250 AED</option>
+                                        <option value="400">Report VIP - 400 AED</option>
+                                        <option value="175">Poster VIP - 175 AED</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase gold-text ml-2">When is it due? (Submission Date)</label>
+                                <input type="date" id="datePicker" name="deadline" required class="w-full bg-[#111] border border-white/10 p-5 rounded-2xl outline-none focus:border-white">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase gold-text ml-2">Project Requirements</label>
+                            <textarea name="message" rows="5" placeholder="Topic, word count, formatting style, or any links to files..." class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl focus:border-[#D4AF37] outline-none"></textarea>
+                        </div>
+
+                        <div class="bg-black/60 p-10 rounded-[2rem] border-2 border-dashed border-[#D4AF37]/40 flex flex-col items-center justify-center">
+                            <p class="text-gray-500 uppercase tracking-widest text-sm mb-2">Total Estimated Investment</p>
+                            <div id="totalDisplay" class="text-7xl font-black gold-text italic">300 AED</div>
+                            <p id="rushWarning" class="text-orange-500 font-bold mt-4 hidden animate__animated animate__pulse animate__infinite">⚠️ +50 AED RUSH FEE (DELIVERY UNDER 48H)</p>
+                        </div>
+
+                        <button type="submit" class="w-full gold-bg text-black font-black py-8 rounded-3xl text-3xl shadow-[0_20px_50px_rgba(212,175,55,0.3)] hover:scale-[1.02] transition-all">
+                            CONFIRM INQUIRY
+                        </button>
+                    </form>
                 </div>
-                <div class="glass p-8 rounded-2xl flex justify-between items-center group">
-                    <div>
-                        <h5 class="text-2xl font-bold uppercase tracking-widest">Academic Essay Drafting</h5>
-                        <p class="text-gray-600">Structural formatting & advanced editing</p>
+
+                <div id="thankYou" class="hidden text-center py-20 animate__animated animate__zoomIn">
+                    <div class="text-9xl mb-10">💎</div>
+                    <h2 class="hero-title text-7xl gold-text mb-8 uppercase">Request Sent</h2>
+                    <p class="text-2xl text-gray-300 mb-6">Your project has been queued for review.</p>
+                    <div class="p-8 bg-white/5 rounded-3xl border border-white/10 max-w-md mx-auto">
+                        <p class="text-gray-500 mb-2">We will contact you shortly at:</p>
+                        <p id="displayEmail" class="text-3xl font-bold text-white underline"></p>
+                        <p class="text-sm text-gray-400 mt-6 italic underline">A payment link will be sent upon acceptance.</p>
                     </div>
-                    <span class="text-3xl font-black gold-text">200 AED</span>
+                    <button onclick="location.reload()" class="mt-12 text-gray-600 hover:text-gold uppercase tracking-[0.3em] font-bold">New Booking</button>
                 </div>
-                <div class="glass p-8 rounded-2xl flex justify-between items-center group">
-                    <div>
-                        <h5 class="text-2xl font-bold uppercase tracking-widest">Comprehensive Research Report</h5>
-                        <p class="text-gray-600">Extensive formatting for 1000+ words</p>
-                    </div>
-                    <span class="text-3xl font-black gold-text">350 AED</span>
-                </div>
-                <div class="glass p-8 rounded-2xl flex justify-between items-center border-gold/40 bg-gold/5">
-                    <div>
-                        <h5 class="text-2xl font-bold gold-text uppercase tracking-widest">VIP Executive Priority</h5>
-                        <p class="text-gold/60">24-48 Hour Emergency Delivery</p>
-                    </div>
-                    <span class="text-3xl font-black gold-text">+85 AED</span>
-                </div>
+
             </div>
         </div>
     </section>
 
-    <section id="booking" class="py-32 px-6">
-        <div class="max-w-5xl mx-auto glass p-10 md:p-20 rounded-[4rem] relative">
-            <div id="formUI">
-                <div class="text-center mb-16">
-                    <h2 class="hero-title text-6xl gold-text uppercase">Secure Inquiry</h2>
-                    <p class="text-gray-400 mt-4">Fill the dossier below to begin your project.</p>
-                </div>
-
-                <form id="contactForm" action="https://formspree.io/f/mykgpbjp" method="POST" class="space-y-10">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <input type="text" name="name" required placeholder="FULL NAME" class="w-full bg-transparent border-b-2 border-white/10 p-4 focus:border-gold outline-none uppercase font-bold tracking-widest">
-                        <input type="email" id="emailInput" name="email" required placeholder="EMAIL" class="w-full bg-transparent border-b-2 border-white/10 p-4 focus:border-gold outline-none uppercase font-bold tracking-widest">
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <select id="service" name="service" class="w-full bg-[#111] border border-white/10 p-5 rounded-xl uppercase font-bold">
-                            <option value="300">Presentation - 300 AED</option>
-                            <option value="385">Presentation VIP - 385 AED</option>
-                            <option value="200">Essay - 200 AED</option>
-                            <option value="250">Essay VIP - 250 AED</option>
-                            <option value="350">Report - 350 AED</option>
-                            <option value="400">Report VIP - 400 AED</option>
-                        </select>
-                        <input type="date" id="date" name="deadline" required class="w-full bg-[#111] border border-white/10 p-5 rounded-xl">
-                    </div>
-
-                    <textarea name="message" rows="5" placeholder="PROJECT DETAILS & REQUIREMENTS..." class="w-full bg-[#111] border border-white/10 p-5 rounded-xl outline-none focus:border-gold font-bold"></textarea>
-
-                    <div class="text-center p-10 border-2 border-dashed border-gold/30 rounded-3xl">
-                        <p class="text-gray-500 text-xs tracking-widest uppercase mb-2">Total Estimated Investment</p>
-                        <div id="price" class="text-7xl font-black gold-text italic">300 AED</div>
-                    </div>
-
-                    <button type="submit" class="w-full gold-bg text-black font-black py-8 rounded-3xl text-2xl uppercase tracking-widest hover:scale-[1.02] transition-all">SUBMIT INQUIRY</button>
-                </form>
-            </div>
-
-            <div id="thanksUI" class="hidden text-center py-20 animate__animated animate__zoomIn">
-                <h2 class="hero-title text-8xl gold-text mb-10">THANK YOU</h2>
-                <p class="text-2xl text-gray-400 mb-8">Your inquiry has been sent. Awaiting acceptance.</p>
-                <div class="max-w-md mx-auto p-8 bg-white/5 rounded-3xl border border-gold/20">
-                    <p class="text-gray-500 uppercase text-xs mb-2">You will be informed via</p>
-                    <p id="targetEmail" class="text-2xl font-bold text-white mb-6 underline"></p>
-                    <p class="text-sm text-gold">Once accepted, you will receive a secure payment link.</p>
-                </div>
-                <button onclick="location.reload()" class="mt-12 text-gray-700 uppercase font-black tracking-widest hover:text-gold transition-colors">Submit Another</button>
-            </div>
+    <footer class="py-32 text-center border-t border-white/5 bg-black">
+        <div class="mb-12">
+            <img src="logo.jpg" class="w-24 h-24 mx-auto rounded-full opacity-40 grayscale" alt="Footer Logo">
         </div>
-    </section>
-
-    <footer class="py-24 text-center border-t border-white/5 opacity-50">
-        <img src="image_db2290.jpg" class="w-20 h-20 mx-auto rounded-full mb-8 grayscale opacity-20">
-        <p class="text-gray-500 tracking-[0.5em] font-bold uppercase mb-4 text-xs">Academic Excellence Dubai</p>
-        <p class="text-[10px] uppercase text-gray-700 max-w-2xl mx-auto px-10">We provide elite formatting, visual design, and structural consultancy. All services comply with professional consultancy standards.</p>
+        <div class="flex flex-col md:flex-row justify-center gap-12 text-gray-600 uppercase tracking-widest font-bold mb-12">
+            <span>Dubai, UAE</span>
+            <span>academicexcellence595@gmail.com</span>
+            <span>+994 70 4440404</span>
+        </div>
+        <p class="text-gray-800 text-xs px-10 max-w-4xl mx-auto leading-loose">
+            Disclaimer: Academic Excellence Dubai provides drafting, visual formatting, and structural consultancy. We do not support academic dishonesty. It is the student's responsibility to use our consultancy services in accordance with their institution's integrity policy.
+        </p>
     </footer>
 
     <script>
-        const form = document.getElementById('contactForm');
-        const service = document.getElementById('service');
-        const date = document.getElementById('date');
-        const price = document.getElementById('price');
-        const emailInput = document.getElementById('emailInput');
+        const form = document.getElementById('mainForm');
+        const serviceSelect = document.getElementById('serviceSelect');
+        const datePicker = document.getElementById('datePicker');
+        const totalDisplay = document.getElementById('totalDisplay');
+        const rushWarning = document.getElementById('rushWarning');
+        const userEmailInput = document.getElementById('userEmail');
+        const displayEmail = document.getElementById('displayEmail');
 
-        function updatePrice() {
-            let base = parseInt(service.value);
-            let rush = 0;
-            if (date.value) {
-                const diff = (new Date(date.value) - new Date()) / (1000 * 60 * 60 * 24);
-                if (diff <= 2 && diff >= 0) rush = 50;
+        function calculate() {
+            let base = parseInt(serviceSelect.value);
+            let extra = 0;
+            if (datePicker.value) {
+                const today = new Date();
+                const deadline = new Date(datePicker.value);
+                const diffTime = deadline - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays <= 2 && diffDays >= 0) {
+                    extra = 50;
+                    rushWarning.classList.remove('hidden');
+                } else {
+                    rushWarning.classList.add('hidden');
+                }
             }
-            price.innerText = (base + rush) + " AED";
+            totalDisplay.innerText = (base + extra) + " AED";
         }
 
-        service.onchange = updatePrice;
-        date.onchange = updatePrice;
+        serviceSelect.onchange = calculate;
+        datePicker.onchange = calculate;
 
         form.onsubmit = async (e) => {
             e.preventDefault();
-            document.getElementById('targetEmail').innerText = emailInput.value;
-            fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
-            .then(() => {
-                document.getElementById('formUI').classList.add('hidden');
-                document.getElementById('thanksUI').classList.remove('hidden');
-                window.scrollTo({ top: document.getElementById('booking').offsetTop, behavior: 'smooth' });
+            displayEmail.innerText = userEmailInput.value;
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById('formContainer').classList.add('hidden');
+                    document.getElementById('thankYou').classList.remove('hidden');
+                    window.scrollTo({ top: document.getElementById('order').offsetTop - 50, behavior: 'smooth' });
+                }
             });
         };
     </script>
-
 </body>
 </html>
