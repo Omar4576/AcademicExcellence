@@ -2,86 +2,145 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Academic Assistance Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Excellence Dubai | Premium Student Assistance</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-<header>
-  <h1>Academic Assistance Services</h1>
-  <p>Professional formatting, presentations & academic support</p>
-  <a href="#order" class="btn">Order Now</a>
-</header>
+  <!-- Navigation -->
+  <nav class="luxury-nav">
+    <div class="nav-container">
+      <div class="logo">Academic<span>Excellence</span></div>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#order">Order Now</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-<section>
-  <h2>Our Services</h2>
-  <ul>
-    <li>Presentations</li>
-    <li>Essays</li>
-    <li>Reports</li>
-    <li>Posters</li>
-    <li>Any typed academic submission</li>
-  </ul>
-</section>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Your Success, <span class="highlight">Our Priority</span></h1>
+      <p class="hero-subtitle">Premium academic assistance for Dubai university students. Presentations, essays, reports, posters — we handle the work so you can focus on excellence.</p>
+      <a href="#order" class="cta-button">Start Your Project <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </header>
 
-<section>
-  <h2>Why Choose Us?</h2>
-  <p>
-    Trusted by university students. On-time delivery. Clean formatting.
-    VIP options available for urgent deadlines.
-  </p>
-</section>
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    <div class="service-grid">
+      <div class="service-card">
+        <i class="fas fa-presentation"></i>
+        <h3>Presentations</h3>
+        <p>Professional slides for any topic, crafted to impress.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-file-alt"></i>
+        <h3>Essays & Reports</h3>
+        <p>Well-researched, structured academic writing.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-chart-line"></i>
+        <h3>Posters & Visuals</h3>
+        <p>Creative academic posters that communicate effectively.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-crown"></i>
+        <h3>VIP Express</h3>
+        <p>Priority service with accelerated deadlines.</p>
+      </div>
+    </div>
+  </section>
 
-<section id="order">
-  <h2>Place an Order</h2>
+  <!-- Pricing Section -->
+  <section id="pricing" class="pricing">
+    <h2>Pricing</h2>
+    <div class="pricing-tables">
+      <div class="price-card standard">
+        <div class="price-header">
+          <h3>Standard</h3>
+          <p>Quality with reasonable timeline</p>
+        </div>
+        <ul class="price-features">
+          <li><i class="fas fa-check"></i> Presentation: 300 AED (3-5 days)</li>
+          <li><i class="fas fa-check"></i> Essay: 200 AED (2-4 days)</li>
+          <li><i class="fas fa-check"></i> Report (1000+ words): 350 AED (3-5 days)</li>
+          <li><i class="fas fa-check"></i> Poster: 150 AED (1-2 days)</li>
+        </ul>
+      </div>
 
-  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
+      <div class="price-card vip">
+        <div class="price-header">
+          <div class="vip-badge">VIP</div>
+          <h3>VIP Package</h3>
+          <p>Accelerated priority service</p>
+        </div>
+        <ul class="price-features">
+          <li><i class="fas fa-check"></i> Presentation: 385 AED (1-3 days)</li>
+          <li><i class="fas fa-check"></i> Essay: 250 AED (1-2 days)</li>
+          <li><i class="fas fa-check"></i> Report: 400 AED (1-3 days)</li>
+          <li><i class="fas fa-check"></i> Poster: 175 AED (0-1 days)</li>
+          <li><i class="fas fa-bolt"></i> +50 AED for urgent requests (under 2 days)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <select name="service" required>
-      <option value="">Select Service</option>
-      <option>Presentation</option>
-      <option>Essay</option>
-      <option>Report</option>
-      <option>Poster</option>
-    </select>
+  <!-- Order Form Section -->
+  <section id="order" class="order-form">
+    <h2>Start Your Project</h2>
+    <form action="https://formspree.io/f/mykgpbjp" method="POST" class="formspree-form">
+      <div class="form-group">
+        <label for="service">Select Service</label>
+        <select id="service" name="service" required>
+          <option value="">Choose a service...</option>
+          <option value="presentation">Presentation</option>
+          <option value="essay">Essay</option>
+          <option value="report">Report</option>
+          <option value="poster">Poster</option>
+          <option value="vip_presentation">VIP Presentation</option>
+          <option value="vip_essay">VIP Essay</option>
+          <option value="vip_report">VIP Report</option>
+          <option value="vip_poster">VIP Poster</option>
+        </select>
+      </div>
 
-    <select name="package" required>
-      <option value="">Package</option>
-      <option>Standard</option>
-      <option>VIP</option>
-    </select>
+      <div class="form-group">
+        <label for="deadline">Submission Date</label>
+        <input type="date" id="deadline" name="deadline" required>
+        <small>When is it due?</small>
+      </div>
 
-    <input type="date" name="deadline" required>
+      <div class="form-group">
+        <label for="details">Project Details</label>
+        <textarea id="details" name="message" rows="4" placeholder="Describe your requirements, subject, word count, and instructions..." required></textarea>
+      </div>
 
-    <textarea name="details" placeholder="Details / instructions"></textarea>
+      <div class="form-group">
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="student@university.ac.ae" required>
+      </div>
 
-    <p class="note">
-      ⚠️ Rush fee (+50 AED) applies if deadline is shorter than package delivery time.
-    </p>
+      <button type="submit" class="submit-btn">Send Request</button>
+    </form>
+  </section>
 
-    <button type="submit">Submit Order</button>
-  </form>
-</section>
-
-<footer>
-  <p>© 2025 Academic Assistance Services</p>
-</footer>
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-logo">Academic<span>Excellence</span></div>
+      <p>Serving Dubai Universities: UOWD, AUD, MBZUAI, Heriot-Watt, and more</p>
+      <p>Contact: assistance@academicexcellence.ae</p>
+      <p class="disclaimer">We provide academic assistance, editing, and formatting services. We uphold academic integrity and encourage original student work.</p>
+    </div>
+  </footer>
 
 </body>
 </html>
-<section id="contact-form" class="contact-form">
-  <h2>Start Your Project</h2>
-  <form action="https://formspree.io/f/mykgpbjp" method="POST" class="formspree-form">
-    <div class="form-group">
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" placeholder="student@university.ac.ae" required>
-    </div>
-    <div class="form-group">
-      <label for="message">Project Details</label>
-      <textarea id="message" name="message" rows="4" placeholder="Describe your requirements, subject, word count, any specific instructions..." required></textarea>
-    </div>
-    <button type="submit" class="submit-btn">Send Request</button>
-  </form>
-</section>
+
