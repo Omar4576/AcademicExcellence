@@ -12,7 +12,11 @@
   <!-- Navigation -->
   <nav class="luxury-nav">
     <div class="nav-container">
-      <div class="logo">Academic<span>Excellence</span></div>
+      <!-- Logo -->
+      <div class="logo">
+        <img src="logo.png" alt="Academic Excellence Dubai" class="logo-img">
+      </div>
+
       <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#pricing">Pricing</a>
@@ -116,7 +120,7 @@
   <!-- Footer -->
   <footer id="contact">
     <div class="footer-content">
-      <div class="footer-logo">Academic<span>Excellence</span></div>
+      <img src="logo.png" alt="Academic Excellence Dubai" class="footer-logo-img">
       <p>Serving Dubai Universities: UOWD, AUD, MBZUAI, Heriot-Watt, and more</p>
       <p>Contact: assistance@academicexcellence.ae</p>
       <p class="disclaimer">We provide academic assistance, editing, and formatting services. We uphold academic integrity and encourage original student work.</p>
@@ -126,7 +130,7 @@
   <!-- Stripe JS -->
   <script src="https://js.stripe.com/v3/"></script>
   <script>
-    const stripe = Stripe("YOUR_PUBLISHABLE_KEY"); // replace with your key
+    const stripe = Stripe("YOUR_PUBLISHABLE_KEY"); // replace with your Stripe key
     const button = document.getElementById("checkout-button");
 
     button.addEventListener("click", async () => {
@@ -148,6 +152,11 @@
       const result = await stripe.redirectToCheckout({ sessionId: session.id });
       if(result.error) alert(result.error.message);
     });
+  </script>
+
+</body>
+</html>
+
   </script>
 
 </body>
