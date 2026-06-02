@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Excellence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+        }
+
+        nav {
+            background: #111;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #c9a84c;
+        }
+
+        nav .logo {
+            color: #c9a84c;
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        nav .nav-links a:hover {
+            color: #c9a84c;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-gold {
+            background: #c9a84c;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .btn-gold:hover {
+            background: #e0b84c;
+        }
+
+        .btn-outline {
+            border: 1px solid #c9a84c;
+            color: #c9a84c;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: #c9a84c;
+            color: #000;
+        }
+
+        .messages {
+            padding: 10px 40px;
+        }
+
+        .messages .alert {
+            padding: 10px 16px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .alert-error {
+            background: #ff4444;
+            color: #fff;
+        }
+
+        .alert-success {
+            background: #2ecc71;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="/" class="logo">Academic Excellence</a>
+        <div class="nav-links">
+            {% if user.is_authenticated %}
+            <a href="/dashboard/">Dashboard</a>
+            <a href="/dashboard/orders/">Sifarişlərim</a>
+            <a href="/dashboard/orders/new/">Yeni Sifariş</a>
+            <a href="/accounts/logout/">Çıxış ({{ user.username }})</a>
+            {% else %}
+            <a href="/accounts/login/">Giriş</a>
+            <a href="/accounts/register/">Qeydiyyat</a>
+            {% endif %}
+        </div>
+    </nav>
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+</body>
+
+</html>
