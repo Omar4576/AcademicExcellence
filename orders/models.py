@@ -42,6 +42,10 @@ class Order(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     notes = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_paid = models.BooleanField(default=False)
+    content_file = models.FileField(upload_to='orders/files/', blank=True, null=True)
+    content_link = models.URLField(blank=True, null=True)
+    content_note = models.TextField(blank=True)
 
     def save(self, *args, **kwargs):
         self.price = self.PRICES.get((self.service, self.delivery_type), 0)
