@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <div class="container">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
-        <h2 style="color:#c9a84c;">My Orders</h2>
-        <a href="/dashboard/orders/new/" class="btn btn-gold">+ New Order</a>
+        <h2 style="color:#c9a84c;">Sifarişlərim</h2>
+        <a href="/dashboard/orders/new/" class="btn btn-gold">+ Yeni Sifariş</a>
     </div>
 
     {% if orders %}
@@ -11,11 +12,11 @@
         <thead>
             <tr style="border-bottom:1px solid #333;">
                 <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">#</th>
-                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Service</th>
-                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Topic</th>
-                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Delivery</th>
+                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Xidmət</th>
+                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Mövzu</th>
+                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Çatdırılma</th>
                 <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Status</th>
-                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Date</th>
+                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Tarix</th>
                 <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;"></th>
             </tr>
         </thead>
@@ -29,30 +30,29 @@
                 <td style="padding:12px;">
                     {% if order.status == 'pending' %}
                     <span
-                        style="background:#333; color:#fff; padding:4px 10px; border-radius:20px; font-size:12px;">Pending</span>
+                        style="background:#333; color:#fff; padding:4px 10px; border-radius:20px; font-size:12px;">Gözləyir</span>
                     {% elif order.status == 'in_progress' %}
                     <span
-                        style="background:#f39c12; color:#000; padding:4px 10px; border-radius:20px; font-size:12px;">In
-                        Progress</span>
+                        style="background:#f39c12; color:#000; padding:4px 10px; border-radius:20px; font-size:12px;">İcradadır</span>
                     {% elif order.status == 'completed' %}
                     <span
-                        style="background:#3498db; color:#fff; padding:4px 10px; border-radius:20px; font-size:12px;">Completed</span>
+                        style="background:#3498db; color:#fff; padding:4px 10px; border-radius:20px; font-size:12px;">Tamamlandı</span>
                     {% elif order.status == 'delivered' %}
                     <span
-                        style="background:#2ecc71; color:#000; padding:4px 10px; border-radius:20px; font-size:12px;">Delivered</span>
+                        style="background:#2ecc71; color:#000; padding:4px 10px; border-radius:20px; font-size:12px;">Çatdırıldı</span>
                     {% endif %}
                 </td>
                 <td style="padding:12px; color:#aaa; font-size:13px;">{{ order.created_at|date:"d.m.Y" }}</td>
                 <td style="padding:12px;"><a href="/dashboard/orders/{{ order.pk }}/"
-                        style="color:#c9a84c; font-size:13px;">View</a></td>
+                        style="color:#c9a84c; font-size:13px;">Bax</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     {% else %}
     <div style="text-align:center; padding:60px; color:#aaa;">
-        <p>You have no orders yet.</p>
-        <a href="/dashboard/orders/new/" class="btn btn-gold" style="margin-top:20px;">Place First Order</a>
+        <p>Hələ sifarişiniz yoxdur.</p>
+        <a href="/dashboard/orders/new/" class="btn btn-gold" style="margin-top:20px;">İlk Sifarişi Ver</a>
     </div>
     {% endif %}
 </div>
