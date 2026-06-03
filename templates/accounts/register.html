@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <div
     style="max-width:400px; margin:80px auto; background:#111; padding:40px; border-radius:10px; border:1px solid #333;">
-    <h2 style="color:#c9a84c; margin-bottom:30px; text-align:center;">Qeydiyyat</h2>
+    <h2 style="color:#c9a84c; margin-bottom:30px; text-align:center;">Register</h2>
     <form method="post">
         {% csrf_token %}
         {% for field in form %}
@@ -15,10 +14,10 @@
             {% endif %}
         </div>
         {% endfor %}
-        <button type="submit" class="btn btn-gold" style="width:100%;">Qeydiyyatdan keç</button>
+        <button type="submit" class="btn btn-gold" style="width:100%;">Create Account</button>
     </form>
     <p style="text-align:center; margin-top:20px; color:#aaa; font-size:13px;">
-        Hesabınız var? <a href="/accounts/login/" style="color:#c9a84c;">Giriş</a>
+        Already have an account? <a href="/accounts/login/" style="color:#c9a84c;">Sign In</a>
     </p>
 </div>
 <style>
