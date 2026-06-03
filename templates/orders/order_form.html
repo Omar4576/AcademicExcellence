@@ -3,7 +3,7 @@
 {% block content %}
 <div
     style="max-width:600px; margin:60px auto; background:#111; padding:40px; border-radius:10px; border:1px solid #333;">
-    <h2 style="color:#c9a84c; margin-bottom:30px;">Yeni Sifariş</h2>
+    <h2 style="color:#c9a84c; margin-bottom:30px;">New order</h2>
     <form method="post">
         {% csrf_token %}
         {% for field in form %}
@@ -16,8 +16,8 @@
         </div>
         {% endfor %}
         <div style="display:flex; gap:10px; margin-top:10px;">
-            <button type="submit" class="btn btn-gold">Sifariş Ver</button>
-            <a href="/dashboard/" class="btn btn-outline">Ləğv et</a>
+            <button type="submit" class="btn btn-gold">Place Order</button>
+            <a href="/dashboard/" class="btn btn-outline">Cancel</a>
         </div>
     </form>
 </div>

@@ -6,7 +6,6 @@ from .models import UserProfile
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
     phone = forms.CharField(max_length=20, required=False)
-    university = forms.CharField(max_length=100, required=False)
 
     class Meta:
         model = User
@@ -20,6 +19,5 @@ class RegisterForm(UserCreationForm):
             UserProfile.objects.create(
                 user=user,
                 phone=self.cleaned_data.get('phone', ''),
-                university=self.cleaned_data.get('university', '')
             )
         return user
