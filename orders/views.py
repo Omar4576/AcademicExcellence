@@ -60,3 +60,24 @@ def order_detail(request, pk):
         'steps': steps,
         'step_index': step_index,
     })
+
+    from django.http import FileResponse, HttpResponseForbidden
+
+@login_required
+def download_order_file(request, pk):
+    order = get_object_or_404(
+        Order,
+        pk=pk,
+        user=request.user
+    )
+
+    if not order.is_paid:
+        return HttpResponseForbidden("Payment required")
+
+    if not order.content_file:
+        return HttpResponseForbidden("File not found")
+
+    return FileResponse(
+        order.content_file.open("rb"),
+        as_attachment=True
+    )
