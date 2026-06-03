@@ -18,18 +18,13 @@ class Order(models.Model):
 
     DELIVERY_CHOICES = [
         ('standard', 'Standard'),
-        ('vip', 'VIP'),
     ]
 
     PRICES = {
         ('presentation', 'standard'): 300,
-        ('presentation', 'vip'): 385,
         ('essay', 'standard'): 200,
-        ('essay', 'vip'): 250,
         ('report', 'standard'): 350,
-        ('report', 'vip'): 400,
         ('poster', 'standard'): 150,
-        ('poster', 'vip'): 175,
     }
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
