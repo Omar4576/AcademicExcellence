@@ -84,32 +84,18 @@
             </div>
             {% else %}
             <div style="position:relative; overflow:hidden; border-radius:8px;">
-                <!-- Görünən hissə -->
-                <div style="padding:24px 24px 0;">
-                    {% if preview_text %}
-                    <p style="color:#fff; font-size:14px; line-height:1.7;">{{ preview_text }}</p>
-                    {% else %}
-                    <p style="color:#aaa; font-size:14px;">██████████████████████████████</p>
-                    {% endif %}
-                </div>
-                <!-- Blurlu hissə -->
-                <div style="padding:0 24px; position:relative;">
-                    <div
-                        style="filter:blur(5px); pointer-events:none; user-select:none; color:#aaa; font-size:14px; line-height:1.7;">
-                        {% if full_text %}
-                        <p>{{ full_text|truncatewords:80 }}</p>
-                        {% else %}
-                        ████████████████████<br>
-                        ██████████████████████████<br>
-                        ████████████████
-                        {% endif %}
-                    </div>
-                    <div
-                        style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to bottom, transparent 0%, #111 70%);">
+                <!-- PDF Preview -->
+                <div style="position:relative; height:400px; overflow:hidden;">
+                    <iframe src="{{ order.content_file.url }}"
+                        style="width:100%; height:800px; border:none; pointer-events:none;" scrolling="no">
+                    </iframe>
+                    <!-- Blur overlay - aşağı hissəni örtür -->
+                    <div style="position:absolute; bottom:0; left:0; right:0; height:250px; 
+                        background:linear-gradient(to bottom, transparent 0%, rgba(17,17,17,0.95) 60%, #111 100%);">
                     </div>
                 </div>
                 <!-- Ödəniş düyməsi -->
-                <div style="padding:20px 24px; text-align:center;">
+                <div style="padding:20px 24px; text-align:center; background:#111;">
                     <p style="color:#c9a84c; font-weight:bold; margin-bottom:12px;">🔒 Tam məzmunu görmək üçün ödəniş
                         tələb olunur</p>
                     <a href="https://wa.me/994704440404?text=Sifariş+%23{{ order.pk }}+ödənişi+etmək+istəyirəm"
