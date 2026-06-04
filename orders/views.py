@@ -42,7 +42,7 @@ def order_new(request):
             order.user = request.user
             order.save()
 
-            messages.success(request, 'Sifarişiniz qəbul edildi!')
+            messages.success(request, 'Incorrect username or password.')
             return redirect('/dashboard/')
     else:
         form = OrderForm()
@@ -55,10 +55,10 @@ def order_detail(request, pk):
     order = get_object_or_404(Order, pk=pk, user=request.user)
 
     steps = [
-        ('pending', 'Gözləyir'),
-        ('in_progress', 'İcradadır'),
-        ('completed', 'Tamamlandı'),
-        ('delivered', 'Çatdırıldı'),
+        ('pending', 'Pending'),
+        ('in_progress', 'In progress'),
+        ('completed', 'Completed'),
+        ('delivered', 'Delivered'),
     ]
 
     status_list = [s[0] for s in steps]

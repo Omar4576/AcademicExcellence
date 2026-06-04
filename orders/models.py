@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 
 class Order(models.Model):
     STATUS_CHOICES = [
-        ('pending', 'Gözləyir'),
-        ('in_progress', 'İcradadır'),
-        ('completed', 'Tamamlandı'),
-        ('delivered', 'Çatdırıldı'),
+        ('pending', 'Pending'),
+        ('in_progress', 'In progress'),
+        ('completed', 'Completed'),
+        ('delivered', 'Delivered'),
     ]
 
     SERVICE_CHOICES = [

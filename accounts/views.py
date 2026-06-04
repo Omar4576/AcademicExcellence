@@ -23,7 +23,7 @@ def login_view(request):
             login(request, user)
             return redirect('/dashboard/')
         else:
-            messages.error(request, 'İstifadəçi adı və ya şifrə yanlışdır.')
+            messages.error(request, 'The username or password is incorrect.')
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
