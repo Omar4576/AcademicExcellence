@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import FileResponse, HttpResponseForbidden
-
 from .models import Order
 from .forms import OrderForm
+import pdfplumber
+import os
 
 
 def home(request):
@@ -53,21 +54,37 @@ def order_new(request):
 @login_required
 def order_detail(request, pk):
     order = get_object_or_404(Order, pk=pk, user=request.user)
-
     steps = [
-        ('pending', 'Pending'),
-        ('in_progress', 'In progress'),
-        ('completed', 'Completed'),
-        ('delivered', 'Delivered'),
+        ('pending', 'Gözləyir'),
+        ('in_progress', 'İcradadır'),
+        ('completed', 'Tamamlandı'),
+        ('delivered', 'Çatdırıldı'),
     ]
-
     status_list = [s[0] for s in steps]
     step_index = status_list.index(order.status) + 1
+
+    preview_text = ''
+    full_text = ''
+
+    if order.content_file and order.content_file.name.endswith('.pdf'):
+        try:
+            with pdfplumber.open(order.content_file.path) as pdf:
+                all_text = ''
+                for page in pdf.pages:
+                    all_text += page.extract_text() or ''
+                words = all_text.split()
+                preview_text = ' '.join(words[:60])
+                full_text = ' '.join(words[60:])
+        except:
+            preview_text = ''
+            full_text = ''
 
     return render(request, 'orders/order_detail.html', {
         'order': order,
         'steps': steps,
         'step_index': step_index,
+        'preview_text': preview_text,
+        'full_text': full_text,
     })
 
 
@@ -85,3 +102,5 @@ def download_order_file(request, pk):
         order.content_file.open("rb"),
         as_attachment=True
     )
+
+
