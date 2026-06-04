@@ -42,7 +42,7 @@ def order_new(request):
             order.user = request.user
             order.save()
 
-            messages.success(request, 'Incorrect username or password.')
+            messages.success(request, 'Your order has been received!')
             return redirect('/dashboard/')
     else:
         form = OrderForm()

@@ -23,7 +23,7 @@ def login_view(request):
             login(request, user)
             return redirect('/dashboard/')
         else:
-            messages.error(request, 'The username or password is incorrect.')
+            messages.error(request, 'Incorrect username or password.')
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
