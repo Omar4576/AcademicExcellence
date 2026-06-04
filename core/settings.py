@@ -14,7 +14,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
     'accounts',
     'orders',
 ]
@@ -62,6 +64,14 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'do5lgnq7g',
+    'API_KEY': '516931114741825',
+    'API_SECRET': 'TPTQeAZ3MMpyYpLIF9cjg6ROpU4',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
