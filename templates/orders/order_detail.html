@@ -83,15 +83,35 @@
                 {% endif %}
             </div>
             {% else %}
-            <div style="position:relative; padding:24px; text-align:center;">
-                <div
-                    style="filter:blur(6px); pointer-events:none; user-select:none; color:#aaa; font-size:14px; margin-bottom:16px;">
-                    ██████████████████████████████<br>
-                    ████████████████████<br>
-                    ██████████████████████████
+            <div style="position:relative; overflow:hidden; border-radius:8px;">
+                <!-- Görünən hissə -->
+                <div style="padding:24px; padding-bottom:0;">
+                    {% if order.content_note %}
+                    <p style="color:#fff; font-size:14px;">{{ order.content_note|truncatewords:20 }}</p>
+                    {% else %}
+                    <p style="color:#aaa; font-size:14px;">██████████████████████████████</p>
+                    {% endif %}
                 </div>
-                <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;">
-                    <p style="color:#c9a84c; font-weight:bold; margin-bottom:12px;">🔒 Payment required</p>
+                <!-- Blurlu hissə -->
+                <div style="padding:0 24px 24px; position:relative;">
+                    <div style="filter:blur(5px); pointer-events:none; user-select:none; color:#aaa; font-size:14px;">
+                        {% if order.content_note %}
+                        <p>{{ order.content_note|truncatewords_html:50 }}</p>
+                        {% else %}
+                        ████████████████████<br>
+                        ██████████████████████████<br>
+                        ████████████████
+                        {% endif %}
+                    </div>
+                    <!-- Gradient overlay -->
+                    <div
+                        style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to bottom, transparent 0%, #111 70%);">
+                    </div>
+                </div>
+                <!-- Ödəniş düyməsi -->
+                <div style="padding:20px 24px; text-align:center; background:#111;">
+                    <p style="color:#c9a84c; font-weight:bold; margin-bottom:12px;">🔒 Payment required to view full
+                        content</p>
                     <a href="https://wa.me/994704440404?text=Sifariş+%23{{ order.pk }}+ödənişi+etmək+istəyirəm"
                         target="_blank" class="btn btn-gold">Pay with WhatsApp</a>
                 </div>
