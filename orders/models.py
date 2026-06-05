@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from pdf2image import convert_from_path
+from django.core.files.base import ContentFile
+from io import BytesIO
+import os
+
+
 class Order(models.Model):
 
     STATUS_CHOICES = [
@@ -54,7 +60,36 @@ class Order(models.Model):
 
     def save(self, *args, **kwargs):
         self.price = self.PRICES.get((self.service, self.delivery_type), 0)
+
         super().save(*args, **kwargs)
+
+        if self.content_file and not self.preview_image:
+            try:
+                pages = convert_from_path(
+                    self.content_file.path,
+                    first_page=1,
+                    last_page=1
+                )
+
+                image = pages[0]
+
+                buffer = BytesIO()
+                image.save(buffer, format='JPEG', quality=85)
+
+                filename = os.path.splitext(
+                    os.path.basename(self.content_file.name)
+                )[0] + "_preview.jpg"
+
+                self.preview_image.save(
+                    filename,
+                    ContentFile(buffer.getvalue()),
+                    save=False
+                )
+
+                super().save(update_fields=['preview_image'])
+
+            except Exception as e:
+                print("Preview error:", e)
 
     def __str__(self):
         return f"{self.user.username} - {self.service}"
