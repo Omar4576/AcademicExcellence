@@ -115,13 +115,13 @@
             {% else %}
 
             <!-- UNPAID USER PREVIEW -->
-            <div style="position:relative; margin-bottom:25px;">
+            <div style="position:relative; margin-bottom:25px; user-select: none;">
 
                 {% if order.preview_image %}
                 <img src="{{ order.preview_image.url }}" style="width:100%; display:block; border-radius: 8px 8px 0 0;"
-                    alt="Preview">
+                    alt="Preview" draggable="false">
 
-                <!-- Şəffaf Blur Overlay (60% şəffaf) -->
+                <!-- Şəffaf Blur Overlay -->
                 <div style="
         position:absolute;
         bottom:0;
@@ -130,15 +130,26 @@
         height:60%;
         background: linear-gradient(
             to bottom,
-            transparent 30%,
-            rgba(17,17,17,0.45) 55%,
-            rgba(17,17,17,0.65) 100%
+            transparent 25%,
+            rgba(17,17,17,0.40) 50%,
+            rgba(17,17,17,0.60) 100%
         );
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-radius: 0 0 8px 8px;
         pointer-events: none;
     "></div>
+
+                <!-- Sağ klik və yükləməni bloklayan şəffaf qat -->
+                <div style="
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index: 10;
+        cursor: default;
+    " oncontextmenu="return false;" draggable="false"></div>
 
                 {% else %}
                 <div style="padding:60px 20px; text-align:center; color:#aaa; background:#1a1a1a; border-radius:8px;">

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from PIL import Image, ImageDraw, ImageFont
 from pdf2image import convert_from_path
 from django.core.files.base import ContentFile
 from io import BytesIO
@@ -63,22 +63,48 @@ class Order(models.Model):
 
         super().save(*args, **kwargs)
 
+        # Preview yarat və watermark əlavə et
         if self.content_file and not self.preview_image:
             try:
+                # PDF-dən ilk səhifəni şəkilə çevir
                 pages = convert_from_path(
                     self.content_file.path,
                     first_page=1,
-                    last_page=1
+                    last_page=1,
+                    dpi=180
                 )
-
                 image = pages[0]
 
-                buffer = BytesIO()
-                image.save(buffer, format='JPEG', quality=85)
+                # ================= WATERMARK =================
+                draw = ImageDraw.Draw(image)
+                
+                # Font (əgər sistemdə yoxdursa default istifadə olunur)
+                try:
+                    font = ImageFont.truetype("arial.ttf", 60)  # Böyük watermark
+                except:
+                    font = ImageFont.load_default()
 
-                filename = os.path.splitext(
-                    os.path.basename(self.content_file.name)
-                )[0] + "_preview.jpg"
+                # Watermark mətni
+                watermark_text = "© Academic Excellence - Sample Only"
+                
+                # Mətnin ölçüsünü al
+                bbox = draw.textbbox((0, 0), watermark_text, font=font)
+                text_width = bbox[2] - bbox[0]
+                text_height = bbox[3] - bbox[1]
+
+                # Şəklin mərkəzində yerləşdir (diaqonal)
+                x = (image.width - text_width) // 2
+                y = (image.height - text_height) // 2
+
+                # Yarı şəffaf qara rəng
+                draw.text((x, y), watermark_text, fill=(255, 255, 255, 80), font=font, stroke_width=3, stroke_fill=(0,0,0,100))
+
+                # ================= WATERMARK SON =================
+
+                buffer = BytesIO()
+                image.save(buffer, format='JPEG', quality=82)
+
+                filename = os.path.splitext(os.path.basename(self.content_file.name))[0] + "_preview.jpg"
 
                 self.preview_image.save(
                     filename,
@@ -89,7 +115,7 @@ class Order(models.Model):
                 super().save(update_fields=['preview_image'])
 
             except Exception as e:
-                print("Preview error:", e)
+                print("Preview error:", str(e))
 
     def __str__(self):
         return f"{self.user.username} - {self.service}"
