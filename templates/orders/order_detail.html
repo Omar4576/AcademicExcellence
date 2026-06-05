@@ -91,7 +91,7 @@
 
                 {% if order.content_file %}
                 <a href="{% url 'download_order_file' order.pk %}"
-                   style="display:inline-block; padding:10px 18px; background:#c9a84c; color:#000; border-radius:6px; text-decoration:none;">
+                    style="display:inline-block; padding:10px 18px; background:#c9a84c; color:#000; border-radius:6px; text-decoration:none;">
                     ⬇️ Download PDF
                 </a>
                 {% endif %}
@@ -119,8 +119,7 @@
 
                 {% if order.preview_image %}
 
-                <img src="{{ order.preview_image.url }}"
-                     style="width:100%; display:block;">
+                <img src="{{ order.preview_image.url }}" style="width:100%; display:block;">
 
                 <!-- GRADIENT OVERLAY -->
                 <div style="
@@ -145,15 +144,18 @@
                 {% endif %}
 
                 <!-- PAYMENT BOX -->
-                <div style="padding:20px; text-align:center; background:#111;">
-                    <p style="color:#c9a84c; font-weight:bold;">
+                <div
+                    style="padding:20px; text-align:center; background:#111; border:1px solid #333; border-radius:8px;">
+
+                    <p style="color:#c9a84c; font-weight:bold; margin-bottom:12px;">
                         🔒 Payment required to view full content
                     </p>
 
-                    <a href="https://wa.me/994704440404?text=Sifariş+%23{{ order.pk }}+ödənişi+etmək+istəyirəm"
-                       style="display:inline-block; margin-top:10px; padding:10px 18px; background:#c9a84c; color:#000; border-radius:6px; text-decoration:none;">
-                        Pay with WhatsApp
+                    <a href="https://wa.me/994704440404?text=Sifariş+%23{{ order.pk }}+ödənişi+etmək+istəyirəm" style="display:inline-block; padding:12px 24px; background:#c9a84c; color:#000; border-radius:6px; 
+              text-decoration:none; font-weight:bold; box-shadow: 0 4px 12px rgba(201,168,76,0.3);">
+                        💰 Pay with WhatsApp
                     </a>
+
                 </div>
 
             </div>
@@ -166,7 +168,7 @@
         <!-- CONTACT -->
         <div style="margin-top:30px; text-align:center;">
             <a href="https://wa.me/994704440404?text=I+want+to+get+information+about+Order+%23{{ order.pk }}"
-               style="color:#aaa;">
+                style="color:#aaa;">
                 Contact via WhatsApp
             </a>
         </div>
