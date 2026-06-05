@@ -115,47 +115,33 @@
             {% else %}
 
             <!-- UNPAID USER PREVIEW -->
-            <div style="position:relative; margin-bottom:20px;">
+            <div style="position:relative; margin-bottom:25px;">
 
                 {% if order.preview_image %}
                 <img src="{{ order.preview_image.url }}" style="width:100%; display:block; border-radius: 8px 8px 0 0;"
                     alt="Preview">
 
-                <!-- Blur Overlay (aşağı yarısı) -->
+                <!-- Şəffaf Blur Overlay (60% şəffaf) -->
                 <div style="
         position:absolute;
         bottom:0;
         left:0;
         right:0;
-        height:55%;                    /* 55% aşağı hissə blur olsun */
+        height:60%;
         background: linear-gradient(
             to bottom,
-            transparent 20%,
-            rgba(17,17,17,0.85) 45%
+            transparent 30%,
+            rgba(17,17,17,0.45) 55%,
+            rgba(17,17,17,0.65) 100%
         );
-        backdrop-filter: blur(8px);     /* Əsas blur effekti */
-        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border-radius: 0 0 8px 8px;
         pointer-events: none;
     "></div>
 
-                <!-- Qaranlıq gradient (daha gözəl görünüş üçün) -->
-                <div style="
-        position:absolute;
-        bottom:0;
-        left:0;
-        right:0;
-        height:160px;
-        background: linear-gradient(
-            to bottom,
-            transparent,
-            rgba(17,17,17,0.95)
-        );
-        border-radius: 0 0 8px 8px;
-        pointer-events: none;
-    "></div>
                 {% else %}
-                <div style="padding:40px; text-align:center; color:#aaa;">
+                <div style="padding:60px 20px; text-align:center; color:#aaa; background:#1a1a1a; border-radius:8px;">
                     Preview not available
                 </div>
                 {% endif %}
@@ -164,18 +150,17 @@
 
             <!-- PAYMENT BOX -->
             <div
-                style="padding:25px 20px; text-align:center; background:#111; border:1px solid #333; border-radius:8px;">
-                <p style="color:#c9a84c; font-weight:bold; margin-bottom:15px;">
+                style="padding:28px 20px; text-align:center; background:#111; border:1px solid #333; border-radius:8px;">
+                <p style="color:#c9a84c; font-weight:bold; margin-bottom:16px; font-size:15px;">
                     🔒 Payment required to view full content
                 </p>
 
-                <a href="https://wa.me/994704440404?text=Sifariş+%23{{ order.pk }}+ödənişi+etmək+istəyirəm" style="display:inline-block; padding:14px 28px; background:#c9a84c; color:#000; 
-              border-radius:6px; text-decoration:none; font-weight:bold; 
-              box-shadow: 0 4px 15px rgba(201,168,76,0.4);">
+                <a href="https://wa.me/994704440404?text=Sifariş+%23{{ order.pk }}+ödənişi+etmək+istəyirəm" style="display:inline-block; padding:14px 32px; background:#c9a84c; color:#000; 
+              border-radius:6px; text-decoration:none; font-weight:bold; font-size:16px;
+              box-shadow: 0 5px 15px rgba(201,168,76,0.4);">
                     💰 Pay with WhatsApp
                 </a>
             </div>
-
             {% endif %}
 
         </div>

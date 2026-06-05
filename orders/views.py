@@ -55,10 +55,10 @@ def order_new(request):
 def order_detail(request, pk):
     order = get_object_or_404(Order, pk=pk, user=request.user)
     steps = [
-        ('pending', 'Gözləyir'),
-        ('in_progress', 'İcradadır'),
-        ('completed', 'Tamamlandı'),
-        ('delivered', 'Çatdırıldı'),
+        ('pending', 'Pending'),
+        ('in_progress', 'In progress'),
+        ('completed', 'Completed'),
+        ('delivered', 'Delivered'),
     ]
     status_list = [s[0] for s in steps]
     step_index = status_list.index(order.status) + 1
