@@ -4,7 +4,7 @@
 <div style="max-width:700px; margin:60px auto;">
     <div style="background:#111; padding:40px; border-radius:10px; border:1px solid #333;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
-            <h2 style="color:#c9a84c;">Sifariş #{{ order.pk }}</h2>
+            <h2 style="color:#c9a84c;">Order #{{ order.pk }}</h2>
             <a href="/dashboard/orders/" style="color:#aaa; font-size:13px;">← Back</a>
         </div>
 
@@ -96,10 +96,9 @@
                 </div>
                 <!-- Ödəniş düyməsi -->
                 <div style="padding:20px 24px; text-align:center; background:#111;">
-                    <p style="color:#c9a84c; font-weight:bold; margin-bottom:12px;">🔒 Tam məzmunu görmək üçün ödəniş
-                        tələb olunur</p>
+                    <p style="color:#c9a84c; font-weight:bold; margin-bottom:12px;">🔒 Payment required to view full content</p>
                     <a href="https://wa.me/994704440404?text=Sifariş+%23{{ order.pk }}+ödənişi+etmək+istəyirəm"
-                        target="_blank" class="btn btn-gold">WhatsApp ilə Ödə</a>
+                        target="_blank" class="btn btn-gold">Pay with WhatsApp</a>
                 </div>
             </div>
             {% endif %}
