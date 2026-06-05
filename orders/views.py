@@ -103,4 +103,14 @@ def download_order_file(request, pk):
         as_attachment=True
     )
 
+@login_required
+def preview_pdf(request, pk):
+    order = get_object_or_404(Order, pk=pk, user=request.user)
 
+    if order.is_paid:
+        return FileResponse(
+            order.content_file.open("rb"),
+            content_type="application/pdf"
+        )
+
+    return HttpResponseForbidden()
