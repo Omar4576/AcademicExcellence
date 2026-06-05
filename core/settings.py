@@ -86,7 +86,7 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 import os
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/opt/render/project/src/media'
+
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
