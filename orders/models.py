@@ -63,59 +63,43 @@ class Order(models.Model):
 
         super().save(*args, **kwargs)
 
-        # Preview yarat və watermark əlavə et
         if self.content_file and not self.preview_image:
+            print(f"🔄 Preview generation started for Order #{self.pk}")
             try:
-                # PDF-dən ilk səhifəni şəkilə çevir
                 pages = convert_from_path(
                     self.content_file.path,
                     first_page=1,
                     last_page=1,
-                    dpi=180
+                    dpi=150
                 )
-                image = pages[0]
+                image = pages[0].convert("RGB")
 
-                # ================= WATERMARK =================
+                # Sadə watermark (font problemi olmasın deyə)
                 draw = ImageDraw.Draw(image)
-                
-                # Font (əgər sistemdə yoxdursa default istifadə olunur)
-                try:
-                    font = ImageFont.truetype("arial.ttf", 60)  # Böyük watermark
-                except:
-                    font = ImageFont.load_default()
+                font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+                font = ImageFont.truetype(font_path, 60)
 
-                # Watermark mətni
-                watermark_text = "© Academic Excellence - Sample Only"
-                
-                # Mətnin ölçüsünü al
+                watermark_text = "SAMPLE - FULL VERSION AFTER PAYMENT"
                 bbox = draw.textbbox((0, 0), watermark_text, font=font)
-                text_width = bbox[2] - bbox[0]
-                text_height = bbox[3] - bbox[1]
+                x = (image.width - (bbox[2] - bbox[0])) // 2
+                y = (image.height - (bbox[3] - bbox[1])) // 2
 
-                # Şəklin mərkəzində yerləşdir (diaqonal)
-                x = (image.width - text_width) // 2
-                y = (image.height - text_height) // 2
-
-                # Yarı şəffaf qara rəng
-                draw.text((x, y), watermark_text, fill=(255, 255, 255, 80), font=font, stroke_width=3, stroke_fill=(0,0,0,100))
-
-                # ================= WATERMARK SON =================
+                draw.text((x, y), watermark_text, fill=(255, 255, 255, 90), font=font)
 
                 buffer = BytesIO()
-                image.save(buffer, format='JPEG', quality=82)
+                image.save(buffer, format='JPEG', quality=85)
 
                 filename = os.path.splitext(os.path.basename(self.content_file.name))[0] + "_preview.jpg"
 
-                self.preview_image.save(
-                    filename,
-                    ContentFile(buffer.getvalue()),
-                    save=False
-                )
-
+                self.preview_image.save(filename, ContentFile(buffer.getvalue()), save=False)
                 super().save(update_fields=['preview_image'])
 
+                print(f"✅ SUCCESS: Preview created for Order #{self.pk}")
+
             except Exception as e:
-                print("Preview error:", str(e))
+                print(f"❌ Preview ERROR: {str(e)}")
+                import traceback
+                traceback.print_exc()
 
     def __str__(self):
         return f"{self.user.username} - {self.service}"
