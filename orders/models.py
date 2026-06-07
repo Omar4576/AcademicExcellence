@@ -60,77 +60,64 @@ class Order(models.Model):
 
     def save(self, *args, **kwargs):
         self.price = self.PRICES.get((self.service, self.delivery_type), 0)
-
         super().save(*args, **kwargs)
 
-        # Preview + Watermark
         if self.content_file and not self.preview_image:
             print(f"🔄 Preview generation started for Order #{self.pk}")
             try:
                 pages = convert_from_path(
-                    self.content_file.path,
-                    first_page=1,
-                    last_page=1,
-                    dpi=160
+                    self.content_file.path, 
+                    first_page=1, 
+                    last_page=1, 
+                    dpi=130
                 )
                 image = pages[0].convert("RGB")
-
                 draw = ImageDraw.Draw(image)
+                w, h = image.size
 
-                # Font (Windows + Linux / Render üçün uyğun)
-                font = None
-                font_paths = [
-                    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",  # Render
-                    "C:\\Windows\\Fonts\\Arial.ttf",                         # Windows
-                    "arial.ttf",
-                ]
+                # ========== Ağır Blur (Ən güclü hissə) ==========
+                from PIL import ImageFilter
                 
-                for path in font_paths:
-                    try:
-                        font = ImageFont.truetype(path, 62)
-                        break
-                    except:
-                        continue
-                
-                if font is None:
+                # Aşağı 62% hissəni çox ağır blur et
+                blur_zone = image.crop((0, int(h * 0.38), w, h))
+                blurred = blur_zone.filter(ImageFilter.GaussianBlur(radius=24))  # 22 → 24 etdim
+                image.paste(blurred, (0, int(h * 0.38)))
+
+                # Üst hissəyə yüngül blur
+                upper = image.crop((0, 0, w, int(h * 0.42)))
+                upper_blurred = upper.filter(ImageFilter.GaussianBlur(radius=5))
+                image.paste(upper_blurred, (0, 0))
+
+                # ========== Watermark ==========
+                try:
+                    font = ImageFont.truetype("arial.ttf", 58)
+                except:
                     font = ImageFont.load_default()
 
-                watermark_text = "SAMPLE - FULL VERSION AFTER PAYMENT"
+                text = "SAMPLE - FULL VERSION AFTER PAYMENT"
+                bbox = draw.textbbox((0, 0), text, font=font)
+                x = (w - (bbox[2] - bbox[0])) // 2
+                y = (h - (bbox[3] - bbox[1])) // 2
 
-                # Mətn ölçüsü
-                bbox = draw.textbbox((0, 0), watermark_text, font=font)
-                text_width = bbox[2] - bbox[0]
-                text_height = bbox[3] - bbox[1]
+                # Daha güclü watermark
+                draw.text((x, y), text, fill=(255, 255, 255, 80), 
+                         font=font, stroke_width=6, stroke_fill=(0, 0, 0, 220))
 
-                x = (image.width - text_width) // 2
-                y = (image.height - text_height) // 2
-
-                # Güclü watermark (çətin silinsin)
-                draw.text((x-3, y-3), watermark_text, fill=(0, 0, 0, 140), font=font, stroke_width=2, stroke_fill=(0,0,0))
-                draw.text((x, y), watermark_text, fill=(255, 255, 255, 85), font=font, stroke_width=4, stroke_fill=(0,0,0,180))
-
-                # Kiçik watermark küncdə
-                small_font = ImageFont.load_default()
-                draw.text((30, 30), "© Academic Excellence", fill=(255, 255, 255, 70), font=small_font)
-
+                # Buffer və yadda saxlama
                 buffer = BytesIO()
-                image.save(buffer, format='JPEG', quality=82, optimize=True)
+                image.save(buffer, format='JPEG', quality=65, optimize=True)
 
                 filename = os.path.splitext(os.path.basename(self.content_file.name))[0] + "_preview.jpg"
 
-                self.preview_image.save(
-                    filename,
-                    ContentFile(buffer.getvalue()),
-                    save=False
-                )
-
+                self.preview_image.save(filename, ContentFile(buffer.getvalue()), save=False)
                 super().save(update_fields=['preview_image'])
-                print(f"✅ SUCCESS: Preview + Watermark created for Order #{self.pk}")
+
+                print(f"✅ Protected Preview created for Order #{self.pk}")
 
             except Exception as e:
                 print(f"❌ Preview ERROR: {str(e)}")
                 import traceback
                 traceback.print_exc()
-
+                
     def __str__(self):
         return f"{self.user.username} - {self.service}"
