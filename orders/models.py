@@ -63,6 +63,7 @@ class Order(models.Model):
 
         super().save(*args, **kwargs)
 
+        # Preview + Watermark
         if self.content_file and not self.preview_image:
             print(f"🔄 Preview generation started for Order #{self.pk}")
             try:
@@ -70,31 +71,61 @@ class Order(models.Model):
                     self.content_file.path,
                     first_page=1,
                     last_page=1,
-                    dpi=150
+                    dpi=160
                 )
                 image = pages[0].convert("RGB")
 
-                # Sadə watermark (font problemi olmasın deyə)
                 draw = ImageDraw.Draw(image)
-                font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-                font = ImageFont.truetype(font_path, 60)
+
+                # Font (Windows + Linux / Render üçün uyğun)
+                font = None
+                font_paths = [
+                    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",  # Render
+                    "C:\\Windows\\Fonts\\Arial.ttf",                         # Windows
+                    "arial.ttf",
+                ]
+                
+                for path in font_paths:
+                    try:
+                        font = ImageFont.truetype(path, 62)
+                        break
+                    except:
+                        continue
+                
+                if font is None:
+                    font = ImageFont.load_default()
 
                 watermark_text = "SAMPLE - FULL VERSION AFTER PAYMENT"
-                bbox = draw.textbbox((0, 0), watermark_text, font=font)
-                x = (image.width - (bbox[2] - bbox[0])) // 2
-                y = (image.height - (bbox[3] - bbox[1])) // 2
 
-                draw.text((x, y), watermark_text, fill=(255, 255, 255, 90), font=font)
+                # Mətn ölçüsü
+                bbox = draw.textbbox((0, 0), watermark_text, font=font)
+                text_width = bbox[2] - bbox[0]
+                text_height = bbox[3] - bbox[1]
+
+                x = (image.width - text_width) // 2
+                y = (image.height - text_height) // 2
+
+                # Güclü watermark (çətin silinsin)
+                draw.text((x-3, y-3), watermark_text, fill=(0, 0, 0, 140), font=font, stroke_width=2, stroke_fill=(0,0,0))
+                draw.text((x, y), watermark_text, fill=(255, 255, 255, 85), font=font, stroke_width=4, stroke_fill=(0,0,0,180))
+
+                # Kiçik watermark küncdə
+                small_font = ImageFont.load_default()
+                draw.text((30, 30), "© Academic Excellence", fill=(255, 255, 255, 70), font=small_font)
 
                 buffer = BytesIO()
-                image.save(buffer, format='JPEG', quality=85)
+                image.save(buffer, format='JPEG', quality=82, optimize=True)
 
                 filename = os.path.splitext(os.path.basename(self.content_file.name))[0] + "_preview.jpg"
 
-                self.preview_image.save(filename, ContentFile(buffer.getvalue()), save=False)
-                super().save(update_fields=['preview_image'])
+                self.preview_image.save(
+                    filename,
+                    ContentFile(buffer.getvalue()),
+                    save=False
+                )
 
-                print(f"✅ SUCCESS: Preview created for Order #{self.pk}")
+                super().save(update_fields=['preview_image'])
+                print(f"✅ SUCCESS: Preview + Watermark created for Order #{self.pk}")
 
             except Exception as e:
                 print(f"❌ Preview ERROR: {str(e)}")
