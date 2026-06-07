@@ -1,373 +1,290 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+    /* ── Hero ── */
+    .hero {
+        min-height: calc(100vh - 60px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 40px 24px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-glow {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(201, 168, 76, 0.12), transparent 70%);
+        pointer-events: none;
+    }
+
+    .hero-glow-1 {
+        width: 700px;
+        height: 700px;
+        top: -20%;
+        left: -15%;
+    }
+
+    .hero-glow-2 {
+        width: 600px;
+        height: 600px;
+        bottom: -20%;
+        right: -10%;
+    }
+
+    .hero-logo {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 2.5px solid var(--gold);
+        object-fit: cover;
+        box-shadow: 0 0 60px rgba(201, 168, 76, 0.3);
+        margin-bottom: 32px;
+        animation: float 6s ease-in-out infinite;
+        position: relative;
+        z-index: 1;
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-16px);
+        }
+    }
+
+    .hero h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2.5rem, 8vw, 6rem);
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero h1 .white {
+        color: #fff;
+    }
+
+    .hero h1 .gold-text {
+        background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shine 4s linear infinite;
+    }
+
+    @keyframes shine {
+        to {
+            background-position: 200% center;
+        }
+    }
+
+    .hero p {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        color: var(--muted);
+        max-width: 560px;
+        line-height: 1.7;
+        margin-bottom: 36px;
+        font-weight: 300;
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-ctas {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-ctas .btn {
+        padding: 14px 32px;
+        font-size: 15px;
+        border-radius: 50px;
+    }
+
+    .btn-glass {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(201, 168, 76, 0.25);
+        color: var(--gold);
+        backdrop-filter: blur(8px);
+    }
+
+    .btn-glass:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ── Pricing ── */
+    .pricing {
+        padding: 80px 24px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .pricing h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        text-align: center;
+        margin-bottom: 48px;
+        background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shine 4s linear infinite;
+    }
+
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .pricing-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(201, 168, 76, 0.12);
+        border-radius: 24px;
+        padding: 28px 20px;
+        text-align: center;
+        transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .pricing-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(201, 168, 76, 0.45);
+    }
+
+    .pricing-card .icon {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+    }
+
+    .pricing-card h3 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .pricing-card p {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 16px;
+        line-height: 1.5;
+    }
+
+    .pricing-card .price {
+        font-size: 1.8rem;
+        font-weight: 900;
+        background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shine 4s linear infinite;
+    }
+
+    /* ── Footer ── */
+    footer {
+        padding: 48px 24px;
+        text-align: center;
+        border-top: 0.5px solid rgba(255, 255, 255, 0.05);
+    }
+
+    footer img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        opacity: 0.3;
+        filter: grayscale(1);
+        margin-bottom: 12px;
+    }
+
+    footer p {
+        font-size: 11px;
+        color: #444;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <style>
-        :root {
-            --gold: #FFD700;
-            --dark: #0a0a0a;
-            --glass: rgba(255, 255, 255, 0.05);
-        }
+<!-- Hero -->
+<header class="hero">
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
 
-        .gold-text {
-            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 200% auto;
-            animation: shine 4s linear infinite;
-        }
+    <img src="{% static 'img/logo.jpg' %}" alt="Academic Excellence" class="hero-logo">
 
-        @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
-        }
+    <h1>
+        <span class="white">ACADEMIC</span><br>
+        <span class="gold-text">EXCELLENCE</span>
+    </h1>
+    <p>Dubai's trusted partner for professional document drafting, formatting, and visual design.</p>
 
-        .gold-bg {
-            background: linear-gradient(135deg, #D4AF37 0%, #C5A028 100%);
-            color: black;
-        }
-
-        .glass-panel {
-            background: var(--glass);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .glass-panel:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.5);
-        }
-
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .telegram-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #229ED9;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 50px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(34, 158, 217, 0.35);
-            z-index: 9999;
-            transition: 0.3s;
-        }
-
-        .telegram-float:hover {
-            transform: translateY(-3px);
-            background: #1c8ac0;
-        }
-
-        .auth-btns {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            z-index: 1000;
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            max-width: calc(100vw - 30px);
-        }
-
-        .auth-btns a {
-            padding: 8px 16px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        .auth-btn-gold {
-            background: linear-gradient(135deg, #D4AF37, #C5A028);
-            color: #000;
-        }
-
-        .auth-btn-outline {
-            border: 1px solid #D4AF37;
-            color: #D4AF37;
-        }
-
-        @media(max-width:640px) {
-            .auth-btns a {
-                padding: 6px 12px;
-                font-size: 12px;
-            }
-
-            .telegram-float span {
-                display: none;
-            }
-
-            .telegram-float {
-                padding: 12px;
-                border-radius: 50%;
-            }
-        }
-    </style>
-</head>
-
-<body style="font-family:'Outfit',sans-serif; background-color:#0a0a0a; color:#f3f3f3;">
-
-    <a href="https://t.me/AcademicExcellence0" target="_blank" class="telegram-float">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path
-                d="M21.944 2.506a1.5 1.5 0 0 0-1.682-.242L2.69 9.43a1.5 1.5 0 0 0 .104 2.82l4.73 1.575 1.575 4.73a1.5 1.5 0 0 0 2.82.104l7.166-17.572a1.5 1.5 0 0 0-.141-1.581zM9.36 13.77l-.93 3.24-.93-2.79 8.16-8.16-6.3 7.71z" />
-        </svg>
-        <span>Quick Chat</span>
-    </a>
-
-    <!-- <div class="auth-btns">
+    <div class="hero-ctas">
+        <a href="#pricing" class="btn btn-gold">View Pricing</a>
         {% if user.is_authenticated %}
-        <a href="/dashboard/" class="auth-btn-gold">Dashboard</a>
-        <a href="/accounts/logout/" class="auth-btn-outline">Çıxış</a>
+        <a href="/dashboard/orders/new/" class="btn btn-glass">Start Order</a>
         {% else %}
-        <a href="/accounts/login/" class="auth-btn-outline">Giriş</a>
-        <a href="/accounts/register/" class="auth-btn-gold">Qeydiyyat</a>
+        <a href="/accounts/login/" class="btn btn-glass">Start Order</a>
         {% endif %}
-    </div> -->
+    </div>
+</header>
 
-    <header class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
-        <div
-            class="absolute top-[-20%] left-[-20%] w-[600px] h-[600px] bg-[#D4AF37] opacity-10 blur-[120px] rounded-full">
+<!-- Pricing -->
+<section id="pricing" class="pricing">
+    <h2>Transparent Pricing</h2>
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <div class="icon">📊</div>
+            <h3>Presentation</h3>
+            <p>Visual Design &amp; Speaker Notes</p>
+            <div class="price">300 AED</div>
         </div>
-        <div
-            class="absolute bottom-[-20%] right-[-20%] w-[600px] h-[600px] bg-[#D4AF37] opacity-10 blur-[120px] rounded-full">
+        <div class="pricing-card">
+            <div class="icon">📝</div>
+            <h3>Essay</h3>
+            <p>Structure &amp; Proofreading</p>
+            <div class="price">200 AED</div>
         </div>
-
-        <div class="floating mb-10 relative z-10">
-            {% load static %}
-            <img src="{% static 'img/logo.jpg' %}" alt="Academic Excellence"
-                class="w-40 h-40 md:w-80 md:h-80 rounded-full border-4 border-[#D4AF37] shadow-[0_0_60px_rgba(212,175,55,0.4)] object-cover">
+        <div class="pricing-card">
+            <div class="icon">📑</div>
+            <h3>Report</h3>
+            <p>1000+ Words Formatting</p>
+            <div class="price">350 AED</div>
         </div>
-
-        <h1 class="text-4xl md:text-8xl font-black mb-4 tracking-tighter" style="font-family:'Playfair Display';">
-            <span class="text-white">ACADEMIC</span> <span class="gold-text">EXCELLENCE</span>
-        </h1>
-        <p class="text-base md:text-2xl text-gray-400 max-w-2xl font-light mb-10 px-4">
-            Dubai's trusted partner for professional document drafting, formatting, and visual design.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4 relative z-10 px-4 w-full max-w-md sm:max-w-none justify-center">
-            <a href="#pricing"
-                class="gold-bg px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-[#D4AF37]/30 text-center">View
-                Pricing</a>
-            {% if user.is_authenticated %}
-            <a href="/dashboard/orders/new/"
-                class="glass-panel px-8 py-4 rounded-full font-bold text-lg text-[#D4AF37] hover:bg-white/10 text-center">Start
-                Order</a>
-            {% else %}
-            <a href="/accounts/login/"
-                class="glass-panel px-8 py-4 rounded-full font-bold text-lg text-[#D4AF37] hover:bg-white/10 text-center">Start
-                Order</a>
-            {% endif %}
+        <div class="pricing-card">
+            <div class="icon">🎨</div>
+            <h3>Poster</h3>
+            <p>Creative Academic Design</p>
+            <div class="price">150 AED</div>
         </div>
-    </header>
+    </div>
+</section>
 
-    <section id="pricing" class="py-16 px-4 max-w-7xl mx-auto">
-        <h2 class="text-3xl md:text-5xl font-bold text-center mb-12 gold-text" style="font-family:'Playfair Display';">
-            Transparent Pricing</h2>
-        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="glass-panel p-6 rounded-3xl text-center">
-                <div class="text-4xl mb-3">📊</div>
-                <h3 class="text-lg font-bold mb-1">Presentation</h3>
-                <p class="text-gray-400 text-xs mb-4">Visual Design & Speaker Notes</p>
-                <div class="text-2xl font-black gold-text">300 AED</div>
-            </div>
-            <div class="glass-panel p-6 rounded-3xl text-center">
-                <div class="text-4xl mb-3">📝</div>
-                <h3 class="text-lg font-bold mb-1">Essay</h3>
-                <p class="text-gray-400 text-xs mb-4">Structure & Proofreading</p>
-                <div class="text-2xl font-black gold-text">200 AED</div>
-            </div>
-            <div class="glass-panel p-6 rounded-3xl text-center">
-                <div class="text-4xl mb-3">📑</div>
-                <h3 class="text-lg font-bold mb-1">Report</h3>
-                <p class="text-gray-400 text-xs mb-4">1000+ Words Formatting</p>
-                <div class="text-2xl font-black gold-text">350 AED</div>
-            </div>
-            <div class="glass-panel p-6 rounded-3xl text-center">
-                <div class="text-4xl mb-3">🎨</div>
-                <h3 class="text-lg font-bold mb-1">Poster</h3>
-                <p class="text-gray-400 text-xs mb-4">Creative Academic Design</p>
-                <div class="text-2xl font-black gold-text">150 AED</div>
-            </div>
-        </div>
-    </section>
+<!-- Footer -->
+<footer>
+    <img src="{% static 'img/logo.jpg' %}" alt="">
+    <p>&copy; 2025 Academic Excellence Dubai</p>
+    <p style="margin-top:4px; font-size:10px; letter-spacing:0.1em;">Professional Consultancy &amp; Formatting Services
+    </p>
+</footer>
 
-    <!-- <section id="order" class="py-16 px-4">
-        <div class="max-w-4xl mx-auto">
-            <div class="glass-panel p-6 md:p-16 rounded-[2rem] relative overflow-hidden">
-                <div id="formContainer">
-                    <h2 class="text-3xl md:text-5xl font-bold mb-4 text-center gold-text"
-                        style="font-family:'Playfair Display';">Let's Get Started</h2>
-                    <p class="text-center text-gray-400 mb-8 text-sm md:text-base">We'll review your request and email
-                        you the payment details.</p>
-                    <form id="mainForm" action="https://formspree.io/f/mykgpbjp" method="POST" class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label
-                                    class="block text-xs font-bold uppercase text-[#D4AF37] mb-2 tracking-widest">Full
-                                    Name</label>
-                                <input type="text" name="name" required placeholder="John Doe"
-                                    class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:border-[#D4AF37] focus:bg-white/10 outline-none transition-all text-white">
-                            </div>
-                            <div>
-                                <label
-                                    class="block text-xs font-bold uppercase text-[#D4AF37] mb-2 tracking-widest">Email
-                                    Address</label>
-                                <input type="email" id="userEmail" name="email" required placeholder="name@email.com"
-                                    class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:border-[#D4AF37] focus:bg-white/10 outline-none transition-all text-white">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label
-                                    class="block text-xs font-bold uppercase text-[#D4AF37] mb-2 tracking-widest">Service
-                                    Needed</label>
-                                <select id="serviceSelect" name="service"
-                                    class="w-full bg-[#111] border border-white/10 p-4 rounded-xl text-gray-300 outline-none focus:border-[#D4AF37]">
-                                    <optgroup label="Standard Packages">
-                                        <option value="300">Presentation (Standard) - 300 AED</option>
-                                        <option value="200">Essay (Standard) - 200 AED</option>
-                                        <option value="350">Report (Standard) - 350 AED</option>
-                                        <option value="150">Poster (Standard) - 150 AED</option>
-                                    </optgroup>
-                                    <optgroup label="VIP (Faster Delivery)">
-                                        <option value="385">Presentation (VIP) - 385 AED</option>
-                                        <option value="250">Essay (VIP) - 250 AED</option>
-                                        <option value="400">Report (VIP) - 400 AED</option>
-                                        <option value="175">Poster (VIP) - 175 AED</option>
-                                    </optgroup>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-[#D4AF37] mb-2 tracking-widest">Due
-                                    Date</label>
-                                <input type="date" id="datePicker" name="deadline" required
-                                    class="w-full bg-[#111] border border-white/10 p-4 rounded-xl text-gray-300 outline-none focus:border-[#D4AF37]">
-                            </div>
-                        </div>
-                        <div>
-                            <label
-                                class="block text-xs font-bold uppercase text-[#D4AF37] mb-2 tracking-widest">Instructions
-                                / Details</label>
-                            <textarea name="message" rows="4"
-                                placeholder="Tell us about the topic, word count, and any specific requirements..."
-                                class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:border-[#D4AF37] focus:bg-white/10 outline-none transition-all text-white"></textarea>
-                        </div>
-                        <div
-                            class="bg-black/40 p-6 rounded-2xl border border-[#D4AF37]/30 text-center relative overflow-hidden">
-                            <div class="absolute top-0 left-0 w-full h-1 bg-[#D4AF37]"></div>
-                            <p class="text-gray-500 text-xs uppercase tracking-[0.2em] mb-1">Estimated Total</p>
-                            <div id="totalDisplay" class="text-4xl md:text-5xl font-black gold-text">300 AED</div>
-                            <p id="rushWarning" class="text-orange-500 font-bold text-xs mt-2 hidden animate-pulse">⚡
-                                +50 AED RUSH FEE (Due within 48h)</p>
-                        </div>
-                        <button type="submit"
-                            class="w-full gold-bg text-black font-extrabold py-5 rounded-2xl text-lg md:text-xl hover:brightness-110 transition-all shadow-xl">
-                            SUBMIT REQUEST
-                        </button>
-                    </form>
-                </div>
-                <div id="thankYou" class="hidden text-center py-10 animate__animated animate__fadeIn">
-                    <div class="text-7xl mb-6">🎉</div>
-                    <h2 class="text-4xl font-bold gold-text mb-6" style="font-family:'Playfair Display';">Inquiry Sent!
-                    </h2>
-                    <p class="text-lg text-gray-300 mb-8">We have received your request.</p>
-                    <div class="bg-white/5 p-6 rounded-2xl max-w-sm mx-auto border border-white/10 mb-8">
-                        <p class="text-gray-500 text-sm uppercase">Confirmation sent to:</p>
-                        <p id="displayEmail" class="text-lg font-bold text-[#D4AF37] mt-1 break-all"></p>
-                    </div>
-                    <p class="text-gray-400 text-sm mb-8">Please wait for our email with the payment link.</p>
-                    <button onclick="window.location.reload()" class="text-white underline hover:text-[#D4AF37]">Submit
-                        Another Request</button>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <footer class="py-12 text-center border-t border-white/5">
-        {% load static %}
-        <img src="{% static 'img/logo.jpg' %}" class="w-12 h-12 mx-auto rounded-full mb-4 opacity-40 grayscale"
-            alt="logo footer">
-        <p class="text-gray-600 font-bold text-xs tracking-widest uppercase">&copy; 2024 Academic Excellence Dubai</p>
-        <p class="text-[10px] text-gray-700 mt-2">Professional Consultancy & Formatting Services</p>
-    </footer>
-
-    <script>
-        const form = document.getElementById('mainForm');
-        const serviceSelect = document.getElementById('serviceSelect');
-        const datePicker = document.getElementById('datePicker');
-        const totalDisplay = document.getElementById('totalDisplay');
-        const rushWarning = document.getElementById('rushWarning');
-        const userEmail = document.getElementById('userEmail');
-        const displayEmail = document.getElementById('displayEmail');
-
-        function calculate() {
-            let base = parseInt(serviceSelect.value);
-            let rush = 0;
-            if (datePicker.value) {
-                const today = new Date();
-                const deadline = new Date(datePicker.value);
-                const diffDays = Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
-                if (diffDays <= 2 && diffDays >= -1) { rush = 50; rushWarning.classList.remove('hidden'); }
-                else { rushWarning.classList.add('hidden'); }
-            }
-            totalDisplay.innerText = (base + rush) + " AED";
-        }
-
-        serviceSelect.addEventListener('change', calculate);
-        datePicker.addEventListener('change', calculate);
-
-        form.onsubmit = async (e) => {
-            e.preventDefault();
-            displayEmail.innerText = userEmail.value;
-            const formData = new FormData(form);
-            fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
-                .then(response => {
-                    if (response.ok) {
-                        document.getElementById('formContainer').classList.add('hidden');
-                        document.getElementById('thankYou').classList.remove('hidden');
-                        window.scrollTo({ top: document.getElementById('order').offsetTop, behavior: 'smooth' });
-                        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#D4AF37', '#ffffff', '#FBBF24'] });
-                    }
-                });
-        };
-    </script>
-</body>
-
-</html>
 {% endblock %}
