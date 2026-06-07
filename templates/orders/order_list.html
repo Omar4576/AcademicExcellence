@@ -1,60 +1,321 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    .orders-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .orders-title {
+        font-size: 22px;
+        font-weight: 500;
+        color: #c9a84c;
+    }
+
+    .btn-gold {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        background: #c9a84c;
+        color: #000;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    .btn-gold:hover {
+        background: #d4b35c;
+    }
+
+    /* Desktop table */
+    .table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 580px;
+    }
+
+    thead tr {
+        border-bottom: 0.5px solid #222;
+    }
+
+    th {
+        padding: 10px 12px;
+        text-align: left;
+        font-size: 11px;
+        color: #555;
+        font-weight: 400;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+    }
+
+    tbody tr {
+        border-bottom: 0.5px solid #161616;
+        transition: background 0.15s;
+    }
+
+    tbody tr:hover {
+        background: #0f0f0f;
+    }
+
+    td {
+        padding: 13px 12px;
+        font-size: 13px;
+        color: #d0d0d0;
+    }
+
+    .td-id {
+        color: #444;
+        font-size: 12px;
+    }
+
+    .td-topic {
+        color: #888;
+    }
+
+    .td-date {
+        color: #555;
+        font-size: 12px;
+    }
+
+    .view-link {
+        color: #c9a84c;
+        font-size: 12px;
+        text-decoration: none;
+    }
+
+    .view-link:hover {
+        color: #d4b35c;
+    }
+
+    /* Badges */
+    .badge {
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+    }
+
+    .badge.pending {
+        background: #1e1e1e;
+        color: #888;
+        border: 0.5px solid #333;
+    }
+
+    .badge.in-progress {
+        background: rgba(243, 156, 18, 0.12);
+        color: #f39c12;
+        border: 0.5px solid rgba(243, 156, 18, 0.3);
+    }
+
+    .badge.completed {
+        background: rgba(52, 152, 219, 0.12);
+        color: #5dade2;
+        border: 0.5px solid rgba(52, 152, 219, 0.3);
+    }
+
+    .badge.delivered {
+        background: rgba(46, 204, 113, 0.12);
+        color: #2ecc71;
+        border: 0.5px solid rgba(46, 204, 113, 0.3);
+    }
+
+    /* Empty state */
+    .empty-state {
+        text-align: center;
+        padding: 80px 20px;
+    }
+
+    .empty-state p {
+        color: #555;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    /* Mobile cards */
+    .mobile-orders {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .order-card {
+        background: #0d0d0d;
+        border: 0.5px solid #2a2a2a;
+        border-radius: 12px;
+        padding: 16px;
+    }
+
+    .order-card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 12px;
+    }
+
+    .order-card-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .order-card-service {
+        font-size: 14px;
+        font-weight: 500;
+        color: #d0d0d0;
+    }
+
+    .order-card-topic {
+        font-size: 12px;
+        color: #666;
+    }
+
+    .order-card-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 12px;
+        border-top: 0.5px solid #1a1a1a;
+    }
+
+    .order-card-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .order-card-delivery {
+        font-size: 11px;
+        color: #555;
+    }
+
+    .order-card-date {
+        font-size: 11px;
+        color: #444;
+    }
+
+    @media (max-width: 480px) {
+        .orders-title {
+            font-size: 18px;
+        }
+
+        .btn-gold {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .orders-header {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .table-wrap {
+            display: none;
+        }
+
+        .mobile-orders {
+            display: flex;
+        }
+    }
+</style>
+
 <div class="container">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
-        <h2 style="color:#c9a84c;">My orders</h2>
-        <a href="/dashboard/orders/new/" class="btn btn-gold">+ New order</a>
+    <div class="orders-header">
+        <h2 class="orders-title">My Orders</h2>
+        <a href="/dashboard/orders/new/" class="btn-gold">+ New Order</a>
     </div>
 
     {% if orders %}
-    <table style="width:100%; border-collapse:collapse;">
-        <thead>
-            <tr style="border-bottom:1px solid #333;">
-                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">#</th>
-                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Service</th>
-                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Subject</th>
-                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Delivery</th>
-                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Status</th>
-                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;">Date</th>
-                <th style="padding:12px; text-align:left; color:#aaa; font-size:13px;"></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for order in orders %}
-            <tr style="border-bottom:1px solid #1a1a1a;">
-                <td style="padding:12px; color:#aaa; font-size:13px;">{{ order.pk }}</td>
-                <td style="padding:12px; color:#fff;">{{ order.get_service_display }}</td>
-                <td style="padding:12px; color:#fff;">{{ order.topic }}</td>
-                <td style="padding:12px; color:#fff;">{{ order.get_delivery_type_display }}</td>
-                <td style="padding:12px;">
-                    {% if order.status == 'pending' %}
-                    <span
-                        style="background:#333; color:#fff; padding:4px 10px; border-radius:20px; font-size:12px;">Pending</span>
-                    {% elif order.status == 'in_progress' %}
-                    <span
-                        style="background:#f39c12; color:#000; padding:4px 10px; border-radius:20px; font-size:12px;">In
-                        progress</span>
-                    {% elif order.status == 'completed' %}
-                    <span
-                        style="background:#3498db; color:#fff; padding:4px 10px; border-radius:20px; font-size:12px;">Completed</span>
-                    {% elif order.status == 'delivered' %}
-                    <span
-                        style="background:#2ecc71; color:#000; padding:4px 10px; border-radius:20px; font-size:12px;">Delivered</span>
-                    {% endif %}
-                </td>
-                <td style="padding:12px; color:#aaa; font-size:13px;">{{ order.created_at|date:"d.m.Y" }}</td>
-                <td style="padding:12px;"><a href="/dashboard/orders/{{ order.pk }}/"
-                        style="color:#c9a84c; font-size:13px;">View</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+
+    <!-- Desktop table -->
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Service</th>
+                    <th>Subject</th>
+                    <th>Delivery</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td class="td-id">{{ order.pk }}</td>
+                    <td>{{ order.get_service_display }}</td>
+                    <td class="td-topic">{{ order.topic }}</td>
+                    <td class="td-topic">{{ order.get_delivery_type_display }}</td>
+                    <td>
+                        {% if order.status == 'pending' %}
+                        <span class="badge pending">Pending</span>
+                        {% elif order.status == 'in_progress' %}
+                        <span class="badge in-progress">In Progress</span>
+                        {% elif order.status == 'completed' %}
+                        <span class="badge completed">Completed</span>
+                        {% elif order.status == 'delivered' %}
+                        <span class="badge delivered">Delivered</span>
+                        {% endif %}
+                    </td>
+                    <td class="td-date">{{ order.created_at|date:"d.m.Y" }}</td>
+                    <td><a href="/dashboard/orders/{{ order.pk }}/" class="view-link">View →</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Mobile cards -->
+    <div class="mobile-orders">
+        {% for order in orders %}
+        <div class="order-card">
+            <div class="order-card-top">
+                <div class="order-card-meta">
+                    <span class="order-card-service">{{ order.get_service_display }}</span>
+                    <span class="order-card-topic">{{ order.topic }}</span>
+                </div>
+                {% if order.status == 'pending' %}
+                <span class="badge pending">Pending</span>
+                {% elif order.status == 'in_progress' %}
+                <span class="badge in-progress">In Progress</span>
+                {% elif order.status == 'completed' %}
+                <span class="badge completed">Completed</span>
+                {% elif order.status == 'delivered' %}
+                <span class="badge delivered">Delivered</span>
+                {% endif %}
+            </div>
+            <div class="order-card-bottom">
+                <div class="order-card-info">
+                    <span class="order-card-delivery">{{ order.get_delivery_type_display }}</span>
+                    <span class="order-card-date">{{ order.created_at|date:"d.m.Y" }}</span>
+                </div>
+                <a href="/dashboard/orders/{{ order.pk }}/" class="view-link">View →</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
     {% else %}
-    <div style="text-align:center; padding:60px; color:#aaa;">
-        <p>You don’t have any orders yet.</p>
-        <a href="/dashboard/orders/new/" class="btn btn-gold" style="margin-top:20px;">Place Your First Order</a>
+    <div class="empty-state">
+        <p>You don't have any orders yet.</p>
+        <a href="/dashboard/orders/new/" class="btn-gold">Place Your First Order</a>
     </div>
     {% endif %}
 </div>
+
 {% endblock %}

@@ -1,37 +1,59 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div
-    style="max-width:600px; margin:60px auto; background:#111; padding:40px; border-radius:10px; border:1px solid #333;">
-    <h2 style="color:#c9a84c; margin-bottom:30px;">New order</h2>
-    <form method="post">
-        {% csrf_token %}
-        {% for field in form %}
-        <div style="margin-bottom:20px;">
-            <label style="color:#aaa; font-size:13px; display:block; margin-bottom:6px;">{{ field.label }}</label>
-            {{ field }}
-            {% if field.errors %}
-            <p style="color:#ff4444; font-size:12px;">{{ field.errors.0 }}</p>
-            {% endif %}
-        </div>
-        {% endfor %}
-        <div style="display:flex; gap:10px; margin-top:10px;">
-            <button type="submit" class="btn btn-gold">Place Order</button>
-            <a href="/dashboard/" class="btn btn-outline">Cancel</a>
-        </div>
-    </form>
-</div>
 <style>
+    .form-wrap {
+        max-width: 600px;
+        margin: 60px auto;
+        padding: 0 16px;
+    }
+
+    .form-card {
+        background: #0d0d0d;
+        border: 0.5px solid #2a2a2a;
+        border-radius: 16px;
+        padding: 36px;
+    }
+
+    .form-title {
+        font-size: 22px;
+        font-weight: 500;
+        color: #c9a84c;
+        margin-bottom: 32px;
+    }
+
+    .field-wrap {
+        margin-bottom: 20px;
+    }
+
+    .field-label {
+        font-size: 11px;
+        color: #555;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    .field-error {
+        color: #e24b4a;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+
     input,
     select,
     textarea {
         width: 100%;
-        padding: 10px;
-        background: #1a1a1a;
-        border: 1px solid #333;
-        border-radius: 6px;
-        color: #fff;
+        padding: 10px 14px;
+        background: #111;
+        border: 0.5px solid #2a2a2a;
+        border-radius: 8px;
+        color: #d0d0d0;
         font-size: 14px;
+        box-sizing: border-box;
+        transition: border-color 0.15s;
+        font-family: inherit;
     }
 
     input:focus,
@@ -41,8 +63,101 @@
         border-color: #c9a84c;
     }
 
+    input::placeholder,
+    textarea::placeholder {
+        color: #3a3a3a;
+    }
+
     select option {
-        background: #1a1a1a;
+        background: #111;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 28px;
+    }
+
+    .btn-gold {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 20px;
+        background: #c9a84c;
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .btn-gold:hover {
+        background: #d4b35c;
+    }
+
+    .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 20px;
+        background: transparent;
+        color: #555;
+        border: 0.5px solid #2a2a2a;
+        border-radius: 8px;
+        font-size: 13px;
+        text-decoration: none;
+    }
+
+    .btn-outline:hover {
+        color: #888;
+        border-color: #444;
+    }
+
+    @media (max-width: 480px) {
+        .form-wrap {
+            margin: 24px auto;
+        }
+
+        .form-card {
+            padding: 24px 18px;
+        }
+
+        .form-actions {
+            flex-direction: column;
+        }
+
+        .btn-gold,
+        .btn-outline {
+            justify-content: center;
+        }
     }
 </style>
+
+<div class="form-wrap">
+    <div class="form-card">
+        <h2 class="form-title">New Order</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="field-wrap">
+                <label class="field-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                <p class="field-error">{{ field.errors.0 }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="form-actions">
+                <button type="submit" class="btn-gold">Place Order</button>
+                <a href="/dashboard/" class="btn-outline">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
 {% endblock %}
