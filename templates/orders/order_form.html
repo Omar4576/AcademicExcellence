@@ -1,195 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<style>
-    .form-wrap {
-        max-width: 560px;
-        margin: 2rem auto;
-        background: var(--color-background-primary);
-        border: 0.5px solid var(--color-border-tertiary);
-        border-radius: var(--border-radius-lg);
-        overflow: hidden;
-    }
-
-    .form-header {
-        padding: 1.5rem 1.75rem 1.25rem;
-        border-bottom: 0.5px solid var(--color-border-tertiary);
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .form-header-icon {
-        width: 36px;
-        height: 36px;
-        border-radius: var(--border-radius-md);
-        background: var(--color-background-warning);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .form-title {
-        font-size: 16px;
-        font-weight: 500;
-        color: var(--color-text-primary);
-        margin: 0;
-    }
-
-    .form-subtitle {
-        font-size: 13px;
-        color: var(--color-text-secondary);
-        margin: 0;
-    }
-
-    .form-body {
-        padding: 1.5rem 1.75rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .field-group {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-    }
-
-    .field-label {
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--color-text-secondary);
-    }
-
-    .field-input,
-    .field-input input,
-    .field-input select,
-    .field-input textarea {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 9px 12px;
-        font-size: 14px;
-        color: var(--color-text-primary);
-        background: var(--color-background-secondary);
-        border: 0.5px solid var(--color-border-tertiary);
-        border-radius: var(--border-radius-md);
-        outline: none;
-        transition: border-color 0.15s;
-    }
-
-    .field-input:focus,
-    .field-input input:focus,
-    .field-input select:focus,
-    .field-input textarea:focus {
-        border-color: var(--color-border-primary);
-        box-shadow: 0 0 0 3px rgba(186, 117, 23, 0.12);
-    }
-
-    .field-error {
-        font-size: 12px;
-        color: var(--color-text-danger);
-    }
-
-    .form-footer {
-        padding: 1rem 1.75rem;
-        border-top: 0.5px solid var(--color-border-tertiary);
-        background: var(--color-background-secondary);
-        display: flex;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .btn-primary {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 9px 18px;
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--color-text-warning);
-        background: var(--color-background-warning);
-        border: 0.5px solid var(--color-border-warning);
-        border-radius: var(--border-radius-md);
-        cursor: pointer;
-        transition: opacity 0.15s;
-    }
-
-    .btn-primary:hover {
-        opacity: 0.85;
-    }
-
-    .btn-secondary {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 9px 18px;
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--color-text-secondary);
-        background: transparent;
-        border: 0.5px solid var(--color-border-secondary);
-        border-radius: var(--border-radius-md);
-        cursor: pointer;
-        transition: background 0.15s;
-        text-decoration: none;
-    }
-
-    .btn-secondary:hover {
-        background: var(--color-background-tertiary);
-    }
-
-    .secure-note {
-        margin-left: auto;
-        font-size: 12px;
-        color: var(--color-text-tertiary);
-        display: flex;
-        align-items: center;
-        gap: 4px;
-    }
-</style>
-
-<div class="form-wrap">
-    <div class="form-header">
-        <div class="form-header-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-warning);">
-                <circle cx="9" cy="21" r="1" />
-                <circle cx="20" cy="21" r="1" />
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-            </svg>
-        </div>
-        <div>
-            <p class="form-title">New order</p>
-            <p class="form-subtitle">Fill in the details below to place your order</p>
-        </div>
-    </div>
-
-    <form method="post" class="form-body">
+<div
+    style="max-width:600px; margin:60px auto; background:#111; padding:40px; border-radius:10px; border:1px solid #333;">
+    <h2 style="color:#c9a84c; margin-bottom:30px;">New order</h2>
+    <form method="post">
         {% csrf_token %}
         {% for field in form %}
-        <div class="field-group">
-            <label class="field-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-            <div class="field-input">{{ field }}</div>
+        <div style="margin-bottom:20px;">
+            <label style="color:#aaa; font-size:13px; display:block; margin-bottom:6px;">{{ field.label }}</label>
+            {{ field }}
             {% if field.errors %}
-            <p class="field-error">{{ field.errors.0 }}</p>
+            <p style="color:#ff4444; font-size:12px;">{{ field.errors.0 }}</p>
             {% endif %}
         </div>
         {% endfor %}
+        <div style="display:flex; gap:10px; margin-top:10px;">
+            <button type="submit" class="btn btn-gold">Place Order</button>
+            <a href="/dashboard/" class="btn btn-outline">Cancel</a>
+        </div>
     </form>
-
-    <div class="form-footer">
-        <button type="submit" form="{{ form.prefix }}" class="btn-primary">
-            Place order
-        </button>
-        <a href="/dashboard/" class="btn-secondary">Cancel</a>
-        <span class="secure-note">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-            </svg>
-            Secure form
-        </span>
-    </div>
 </div>
+<style>
+    input,
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        background: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 6px;
+        color: #fff;
+        font-size: 14px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #c9a84c;
+    }
+
+    select option {
+        background: #1a1a1a;
+    }
+</style>
 {% endblock %}
